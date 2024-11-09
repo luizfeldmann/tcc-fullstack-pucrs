@@ -7,7 +7,7 @@ export class SignupRequestData {
   firstName: string = "";
   lastName: string = "";
   emailAddress: string = "";
-  passwordHashed: string = "";
+  password: string = "";
 }
 
 /** Result of the signup request */

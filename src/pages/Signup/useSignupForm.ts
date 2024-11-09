@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import zod, { ZodIssueCode } from "zod";
 import { SignupRequest, SignupResult } from "./SignupRequest";
-import bcrypt from "bcryptjs";
 
 const MIN_PASSWORD_LEN = 8;
 const MAX_PASSWORD_LEN = 16;
@@ -70,8 +69,6 @@ export enum SignupFormSubmitPartialState {
 /** Any state of the form: both success/error states & intermediate states */
 export type SignupFormSubmitState = SignupResult | SignupFormSubmitPartialState;
 
-const salt = await bcrypt.genSaltSync(10);
-
 /** Hook with logic for the signup form */
 export const useSignupForm = () => {
   const {
@@ -111,7 +108,7 @@ export const useSignupForm = () => {
         firstName: data.firstName,
         lastName: data.lastName,
         emailAddress: data.emailAddress,
-        passwordHashed: bcrypt.hashSync(data.password, salt),
+        password: data.password,
       },
       onSubmitResult
     );
