@@ -2,6 +2,7 @@ import StatusCode from "status-code-enum";
 import { appAxios } from "../../app-axios";
 import { AxiosError, AxiosResponse } from "axios";
 
+/** Request data for a new user */
 export class SignupRequestData {
   firstName: string = "";
   lastName: string = "";
@@ -9,12 +10,14 @@ export class SignupRequestData {
   passwordHashed: string = "";
 }
 
+/** Result of the signup request */
 export enum SignupResult {
   Created = "created",
   AlreadyExists = "exists",
   InternalError = "error",
 }
 
+/** Sends a signup request to the server and invokes a callback upon the result */
 export const SignupRequest = (
   req: SignupRequestData,
   onResponse: (result: SignupResult) => void

@@ -1,6 +1,9 @@
 import { Link, Stack } from "@mui/material";
 import { LoginForm } from "./LoginForm";
 
+/**
+ * The login page for users to sign-in
+ */
 const Login = () => {
   return (
     <Stack>

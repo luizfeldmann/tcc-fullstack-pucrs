@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home.tsx";
 import About from "./pages/About/About.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Signup from "./pages/Signup/Signup.tsx";
+import Verify from "./pages/Verify/Verify.tsx";
 import ResetPassword from "./pages/ResetPassword/ResetPassword.tsx";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/verify/:token" element={<Verify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </div>

@@ -8,6 +8,7 @@ import bcrypt from "bcryptjs";
 const MIN_PASSWORD_LEN = 8;
 const MAX_PASSWORD_LEN = 16;
 
+/** Password validation requirements */
 const passwordSchema = zod
   .string()
   .min(
@@ -36,6 +37,7 @@ const passwordSchema = zod
       });
   });
 
+/** Full signup form validation schema */
 const signupFormSchema = zod
   .object({
     firstName: zod.string().min(1, "First name is required"),
@@ -59,15 +61,18 @@ const signupFormSchema = zod
 
 type signupFormData = zod.infer<typeof signupFormSchema>;
 
+/** Intermediate states of the signup form (no success or error is determined) */
 export enum SignupFormSubmitPartialState {
   Initial = "initial",
   Loading = "loading",
 }
 
+/** Any state of the form: both success/error states & intermediate states */
 export type SignupFormSubmitState = SignupResult | SignupFormSubmitPartialState;
 
 const salt = await bcrypt.genSaltSync(10);
 
+/** Hook with logic for the signup form */
 export const useSignupForm = () => {
   const {
     control,
@@ -82,6 +87,7 @@ export const useSignupForm = () => {
     SignupFormSubmitPartialState.Initial
   );
 
+  /** Invoked after the server responds with a status */
   const onSubmitResult = (result: SignupResult) => {
     if (result === SignupResult.AlreadyExists) {
       console.log("Alredy exists error");
@@ -94,7 +100,12 @@ export const useSignupForm = () => {
     setSubmitState(result);
   };
 
+  /** User clicked submit on a validly filled form */
   const onSubmit = (data: signupFormData) => {
+    // Set the form in intermediate loading state
+    setSubmitState(SignupFormSubmitPartialState.Loading);
+
+    // Request the creation to the server
     SignupRequest(
       {
         firstName: data.firstName,
@@ -106,6 +117,7 @@ export const useSignupForm = () => {
     );
   };
 
+  /** State of the captcha check */
   const [checkedCaptcha, setCheckedCaptcha] = useState<string | null>(null);
 
   const onCaptcha = (token: string | null) => {
@@ -113,7 +125,12 @@ export const useSignupForm = () => {
   };
 
   const onSubmitHandler = handleSubmit(onSubmit);
-  const disableSubmit = !isValid || checkedCaptcha === null;
+
+  /** Decides when the Submit button is clickable */
+  const disableSubmit =
+    !isValid || // Disable submit if form has errors
+    checkedCaptcha === null || // Disable if not solved the captcha
+    submitState == SignupFormSubmitPartialState.Loading; // Disable clicking again while it loads
 
   return {
     control,

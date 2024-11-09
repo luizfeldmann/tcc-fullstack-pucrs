@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 import { SignupForm } from "./SignupForm";
 
+/** Page where the user may create a new account */
 const Signup = () => {
   return (
     <Stack>

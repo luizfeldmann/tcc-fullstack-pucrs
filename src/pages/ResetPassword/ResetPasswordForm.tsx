@@ -4,6 +4,7 @@ import { usePasswordResetForm } from "./usePasswordResetForm";
 import { RECAPTCHA_CLIENT_KEY } from "../../constants";
 import { Controller } from "react-hook-form";
 
+/** Form component where the user will insert e-mail request for a password reset */
 export const ResetPasswordForm = () => {
   const { control, errors, disableSubmit, onCaptcha, onSubmitHandler } =
     usePasswordResetForm();

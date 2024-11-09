@@ -2,6 +2,9 @@ import { Button, Stack, IconButton, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
 
+/**
+ * Log-in form with email/password input fields
+ */
 export const LoginForm = () => {
   const loginForm = useLoginForm();
 
