@@ -1,4 +1,10 @@
-import { Button, Stack, IconButton, TextField } from "@mui/material";
+import {
+  Button,
+  Stack,
+  IconButton,
+  TextField,
+  CircularProgress,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
 
@@ -35,8 +41,12 @@ export const LoginForm = () => {
             },
           }}
         />
-        <Button variant="contained" type="submit">
-          Submit
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={loginForm.state.loading}
+        >
+          {loginForm.state.loading ? <CircularProgress /> : <>Submit</>}
         </Button>
       </Stack>
     </form>
