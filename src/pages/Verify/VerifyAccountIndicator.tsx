@@ -3,7 +3,8 @@ import {
   EVerifyAccountStateIndicator,
   useVerifyAccountIndicator,
 } from "./useVerifyAccountIndicator";
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress, Stack } from "@mui/material";
+import { Link } from "react-router-dom";
 
 /** Parameters passed to the verification state component */
 export interface IVerifyAccountIndicatorParams {
@@ -55,10 +56,17 @@ const VerifyAccountIndicator = (params: IVerifyAccountIndicatorParams) => {
   const IndicationIcon = indication.icon;
 
   return (
-    <div>
-      <IndicationIcon />
-      <span>{indication.text}</span>
-    </div>
+    <Stack>
+      <div>
+        <IndicationIcon />
+        <span>{indication.text}</span>
+      </div>
+      {state === EVerifyAccountStateIndicator.Success && (
+        <Button variant="contained" component={Link} to="/login">
+          Log-in
+        </Button>
+      )}
+    </Stack>
   );
 };
 
