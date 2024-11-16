@@ -11,6 +11,7 @@ import Layout from "./pages/Layout/Layout.tsx";
 import Account from "./pages/Account/Account.tsx";
 import Main from "./pages/Main/Main.tsx";
 import { useAuth } from "./hooks/useAuth.ts";
+import Logout from "./pages/Logout/Logout.tsx";
 
 /** Application top-level */
 function App() {
@@ -45,6 +46,12 @@ function App() {
         <Route path={ERoutes.Verify} element={<Verify />} />
         <Route path={ERoutes.ChangePassword} element={<ChangePassword />} />
         <Route path={ERoutes.ResetPassword} element={<ResetPassword />} />
+
+        {/** Virtual page only used to log the user out/off */}
+        <Route
+          path={ERoutes.Logout}
+          element={<Logout onLogout={auth.doLogoff} />}
+        />
       </Routes>
     </div>
   );

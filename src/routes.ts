@@ -2,6 +2,7 @@ export enum ERoutes {
   Index = "/",
   About = "/about",
   Login = "/login",
+  Logout = "/logout",
   Signup = "/signup",
   Verify = "/verify/:token",
   ChangePassword = "/change-password/:token",
