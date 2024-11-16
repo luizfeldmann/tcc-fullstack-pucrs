@@ -7,6 +7,7 @@ import {
   ILoginResult,
   LoginRequest,
 } from "./LoginRequest";
+import { ERoutes } from "../../routes";
 
 /**
  * The stata variables of the login form
@@ -22,10 +23,19 @@ export class CLoginFormState {
   passwordError?: string;
 }
 
+/** Parameters passed to construct the login form */
+export interface IUseLoginParams {
+  /** The page where to redirect after the login is completed */
+  redirectAfterLogin?: string;
+
+  /** Callback for when the login is done */
+  onLogin: (token: string) => void;
+}
+
 /**
  * Hook for the log-in form logic
  */
-export const useLoginForm = () => {
+export const useLoginForm = (params: IUseLoginParams) => {
   const [state, setState] = useState<CLoginFormState>(new CLoginFormState());
   const navigate = useNavigate();
 
@@ -62,9 +72,11 @@ export const useLoginForm = () => {
 
     // Callback when the log-in succeeds and a token is provided
     const OnLoginSuccess = (token: string) => {
-      // TODO: save the authentication token in the session
+      // Hoist the token information to the top level
+      params.onLogin(token);
+
       // Navigate to the root of the website, this time while logged in
-      navigate("/");
+      navigate(params.redirectAfterLogin || ERoutes.Index);
     };
 
     // Callback invoked when the server responds from the login request

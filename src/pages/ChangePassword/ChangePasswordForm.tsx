@@ -7,6 +7,7 @@ import { Controller } from "react-hook-form";
 import { EChangePasswordResult } from "./ChangePasswordRequest";
 import { Check } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { ERoutes } from "../../routes";
 
 /** Parameters passed to the verification state component */
 export interface IChangePasswordFormParams {
@@ -26,7 +27,7 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
           <Check />
           <span>Password changed successfully.</span>
         </div>
-        <Button variant="contained" component={Link} to="/login">
+        <Button variant="contained" component={Link} to={ERoutes.Login}>
           Log-in
         </Button>
       </Stack>

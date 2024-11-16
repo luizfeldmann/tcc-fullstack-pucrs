@@ -7,12 +7,26 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
+import { useSearchParams } from "react-router-dom";
+import { loginRedirectQuery } from "../../components/LoginRedirect";
+
+/** Parameters passed to the Login Form component */
+export interface ILoginFormParams {
+  onLogin: (token: string) => void;
+}
 
 /**
  * Log-in form with email/password input fields
  */
-export const LoginForm = () => {
-  const loginForm = useLoginForm();
+export const LoginForm = (params: ILoginFormParams) => {
+  // Use the query to find the redirect destination after the login
+  const [searchParams] = useSearchParams();
+
+  // Logic of the login form
+  const loginForm = useLoginForm({
+    onLogin: params.onLogin,
+    redirectAfterLogin: searchParams.get(loginRedirectQuery) || undefined,
+  });
 
   return (
     <form onSubmit={loginForm.handleOnSubmit}>

@@ -1,16 +1,17 @@
 import { Link, Stack } from "@mui/material";
-import { LoginForm } from "./LoginForm";
+import { ILoginFormParams, LoginForm } from "./LoginForm";
+import { ERoutes } from "../../routes";
 
 /**
  * The login page for users to sign-in
  */
-const Login = () => {
+const Login = (params: ILoginFormParams) => {
   return (
     <Stack>
       <h1>Log-in</h1>
-      <LoginForm />
+      <LoginForm {...params} />
       <center>
-        <Link href="/reset-password">Reset Password</Link>
+        <Link href={ERoutes.ResetPassword}>Reset Password</Link>
       </center>
     </Stack>
   );
