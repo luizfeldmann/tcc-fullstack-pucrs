@@ -4,7 +4,7 @@ import { RECAPTCHA_CLIENT_KEY } from "../../constants";
 import { Controller } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { SignupResult } from "./SignupRequest";
-import { DoneSharp } from "@mui/icons-material";
+import { DoneSharp, PersonAdd } from "@mui/icons-material";
 
 /** Form collecting data for a new user account */
 export const SignupForm = () => {
@@ -100,7 +100,12 @@ export const SignupForm = () => {
             )}
           />
           <ReCAPTCHA sitekey={RECAPTCHA_CLIENT_KEY} onChange={onCaptcha} />
-          <Button variant="contained" type="submit" disabled={disableSubmit}>
+          <Button
+            variant="contained"
+            type="submit"
+            startIcon={<PersonAdd />}
+            disabled={disableSubmit}
+          >
             {submitButtonContent}
           </Button>
           {submitState === SignupResult.InternalError && (

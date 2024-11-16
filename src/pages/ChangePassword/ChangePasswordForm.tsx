@@ -5,7 +5,7 @@ import {
 } from "./useChangePasswordForm";
 import { Controller } from "react-hook-form";
 import { EChangePasswordResult } from "./ChangePasswordRequest";
-import { Check } from "@mui/icons-material";
+import { Check, LockReset } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { ERoutes } from "../../routes";
 
@@ -64,7 +64,12 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
             />
           )}
         />
-        <Button variant="contained" type="submit" disabled={disableSubmit}>
+        <Button
+          variant="contained"
+          type="submit"
+          startIcon={<LockReset />}
+          disabled={disableSubmit}
+        >
           {state === EChangePasswordFormIntermediate.Loading ? (
             <CircularProgress />
           ) : (

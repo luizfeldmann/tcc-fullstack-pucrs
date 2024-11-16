@@ -7,7 +7,7 @@ import {
 import { RECAPTCHA_CLIENT_KEY } from "../../constants";
 import { Controller } from "react-hook-form";
 import { EResetPasswordResult } from "./ResetPasswordRequest";
-import { Check } from "@mui/icons-material";
+import { Check, Send } from "@mui/icons-material";
 
 /** Form component where the user will insert e-mail request for a password reset */
 export const ResetPasswordForm = () => {
@@ -42,7 +42,12 @@ export const ResetPasswordForm = () => {
           )}
         />
         <ReCAPTCHA sitekey={RECAPTCHA_CLIENT_KEY} onChange={onCaptcha} />
-        <Button variant="contained" type="submit" disabled={disableSubmit}>
+        <Button
+          variant="contained"
+          type="submit"
+          startIcon={<Send />}
+          disabled={disableSubmit}
+        >
           {state === EPasswordResetFormStages.loading ? (
             <CircularProgress />
           ) : (

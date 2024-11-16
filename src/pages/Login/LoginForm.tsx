@@ -5,7 +5,7 @@ import {
   TextField,
   CircularProgress,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Login, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
 import { useSearchParams } from "react-router-dom";
 import { loginRedirectQuery } from "../../components/LoginRedirect";
@@ -58,6 +58,7 @@ export const LoginForm = (params: ILoginFormParams) => {
         <Button
           variant="contained"
           type="submit"
+          startIcon={<Login />}
           disabled={loginForm.state.loading}
         >
           {loginForm.state.loading ? <CircularProgress /> : <>Submit</>}
