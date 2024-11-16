@@ -8,4 +8,6 @@ export enum ERoutes {
   ChangePassword = "/change-password/:token",
   ResetPassword = "/reset-password",
   Account = "/account",
+  Transactions = "/transactions",
+  Deposit = "deposit",
 }

@@ -1,5 +1,12 @@
 import { Stack } from "@mui/material";
 import LoginRedirect from "../../components/LoginRedirect";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import { useState } from "react";
+import UpdateAccountBasicsForm from "./UpdateAccountBasicsForm";
+import UpdateAccountPasswordForm from "./UpdateAccountPasswordForm";
+import { Info, Security } from "@mui/icons-material";
 
 /** Parameters passed to the account page */
 export interface IAccountPageParams {
@@ -11,12 +18,49 @@ export interface IAccountPageParams {
  * Page where the user consults or changes account information
  */
 const Account = (params: IAccountPageParams) => {
+  /** Indexes the tabs */
+  enum ETabs {
+    Basic,
+    Security,
+  }
+
+  // Used to manage the active tab state
+  const [currentTab, setCurrentTab] = useState<ETabs>(ETabs.Basic);
+
   // Ensure the user is logged-in when accessing this page
   if (!params.token) return <LoginRedirect />;
+
+  const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
+    setCurrentTab(newValue);
+  };
 
   return (
     <Stack>
       <h1>Your Account</h1>
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs value={currentTab} onChange={handleChangeTab}>
+            <Tab
+              label="Basic"
+              iconPosition="start"
+              icon={<Info />}
+              value={ETabs.Basic}
+            />
+            <Tab
+              label="Security"
+              iconPosition="start"
+              icon={<Security />}
+              value={ETabs.Security}
+            />
+          </Tabs>
+        </Box>
+        <div hidden={currentTab != ETabs.Basic}>
+          <UpdateAccountBasicsForm />
+        </div>
+        <div hidden={currentTab != ETabs.Security}>
+          <UpdateAccountPasswordForm />
+        </div>
+      </Box>
     </Stack>
   );
 };

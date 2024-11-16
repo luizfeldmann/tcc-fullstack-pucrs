@@ -12,6 +12,8 @@ import Account from "./pages/Account/Account.tsx";
 import Main from "./pages/Main/Main.tsx";
 import { useAuth } from "./hooks/useAuth.ts";
 import Logout from "./pages/Logout/Logout.tsx";
+import TransactionStatement from "./pages/Payment/TransactionStatement.tsx";
+import MakeDeposit from "./pages/Payment/MakeDeposit.tsx";
 
 /** Application top-level */
 function App() {
@@ -33,6 +35,14 @@ function App() {
           <Route
             path={ERoutes.Account}
             element={<Account token={auth.token} />}
+          />
+          <Route
+            path={ERoutes.Transactions}
+            element={<TransactionStatement token={auth.token} />}
+          />
+          <Route
+            path={ERoutes.Deposit}
+            element={<MakeDeposit token={auth.token} />}
           />
         </Route>
 
