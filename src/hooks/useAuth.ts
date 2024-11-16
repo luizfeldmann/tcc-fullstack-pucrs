@@ -27,9 +27,12 @@ export interface IAuthHook {
 /** Implements persistent storage of the authentication state */
 export const useAuth = (): IAuthHook => {
   // Initialize the state by reading from browser local storage
-  const [state, setState] = useState<IAuthData | undefined>(
-    authSchema.safeParse(localStorage.getItem(autoLocalStorageName)).data
-  );
+  const [state, setState] = useState<IAuthData | undefined>(() => {
+    const readStorage = localStorage.getItem(autoLocalStorageName);
+    return readStorage
+      ? authSchema.safeParse(JSON.parse(readStorage)).data
+      : undefined;
+  });
 
   // Every time the state changes, save it to the browser
   useEffect(() => {
