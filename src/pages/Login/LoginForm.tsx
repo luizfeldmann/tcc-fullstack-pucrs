@@ -9,6 +9,7 @@ import { Login, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginForm } from "./useLoginForm";
 import { useSearchParams } from "react-router-dom";
 import { loginRedirectQuery } from "../../components/LoginRedirect";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Parameters passed to the Login Form component */
 export interface ILoginFormParams {
@@ -19,6 +20,8 @@ export interface ILoginFormParams {
  * Log-in form with email/password input fields
  */
 export const LoginForm = (params: ILoginFormParams) => {
+  const { LL } = useI18nContext();
+
   // Use the query to find the redirect destination after the login
   const [searchParams] = useSearchParams();
 
@@ -33,12 +36,12 @@ export const LoginForm = (params: ILoginFormParams) => {
       <Stack spacing={{ xs: 1, sm: 2 }}>
         <TextField
           name="email"
-          label="E-Mail"
+          label={LL.Login.Form.Email()}
           {...loginForm.getErrorAttributtes(loginForm.state.emailError)}
         />
         <TextField
           name="password"
-          label="Password"
+          label={LL.Login.Form.Password()}
           {...loginForm.getErrorAttributtes(loginForm.state.passwordError)}
           type={loginForm.state.showPassword ? "text" : "password"}
           slotProps={{
@@ -61,7 +64,11 @@ export const LoginForm = (params: ILoginFormParams) => {
           startIcon={<Login />}
           disabled={loginForm.state.loading}
         >
-          {loginForm.state.loading ? <CircularProgress /> : <>Submit</>}
+          {loginForm.state.loading ? (
+            <CircularProgress />
+          ) : (
+            <>{LL.Login.Form.ButtonSubmit()}</>
+          )}
         </Button>
       </Stack>
     </form>

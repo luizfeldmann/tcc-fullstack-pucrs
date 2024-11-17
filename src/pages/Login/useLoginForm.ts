@@ -8,6 +8,7 @@ import {
   LoginRequest,
 } from "./LoginRequest";
 import { ERoutes } from "../../routes";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /**
  * The stata variables of the login form
@@ -36,6 +37,9 @@ export interface IUseLoginParams {
  * Hook for the log-in form logic
  */
 export const useLoginForm = (params: IUseLoginParams) => {
+  const { LL } = useI18nContext();
+
+  /** State of the form */
   const [state, setState] = useState<CLoginFormState>(new CLoginFormState());
   const navigate = useNavigate();
 
@@ -64,11 +68,10 @@ export const useLoginForm = (params: IUseLoginParams) => {
     const mailValue = target.email.value;
     const passValue = target.password.value;
 
-    if (!mailValue) mailErr = "Address is required";
-    else if (!validateEmail(mailValue))
-      mailErr = "The e-mail address is invalid";
+    if (!mailValue) mailErr = LL.Login.Form.EmailRequired();
+    else if (!validateEmail(mailValue)) mailErr = LL.Login.Form.EmailInvalid();
 
-    if (!passValue) passErr = "Password is required";
+    if (!passValue) passErr = LL.Login.Form.PasswordRequired();
 
     // Callback when the log-in succeeds and a token is provided
     const OnLoginSuccess = (token: string) => {
@@ -94,7 +97,7 @@ export const useLoginForm = (params: IUseLoginParams) => {
           setState((prevState) => ({
             ...prevState,
             loading: false,
-            emailError: "User does not exist",
+            emailError: LL.Login.Status.BadUser(),
           }));
           break;
 
@@ -102,7 +105,7 @@ export const useLoginForm = (params: IUseLoginParams) => {
           setState((prevState) => ({
             ...prevState,
             loading: false,
-            passwordError: "Incorrect password",
+            passwordError: LL.Login.Status.BadPass(),
           }));
           break;
 

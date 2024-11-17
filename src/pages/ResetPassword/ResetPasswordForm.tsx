@@ -8,9 +8,12 @@ import { RECAPTCHA_CLIENT_KEY } from "../../constants";
 import { Controller } from "react-hook-form";
 import { EResetPasswordResult } from "./ResetPasswordRequest";
 import { Check, Send } from "@mui/icons-material";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Form component where the user will insert e-mail request for a password reset */
 export const ResetPasswordForm = () => {
+  const { LL } = useI18nContext();
+
   const { control, errors, disableSubmit, state, onCaptcha, onSubmitHandler } =
     usePasswordResetForm();
 
@@ -19,9 +22,7 @@ export const ResetPasswordForm = () => {
     return (
       <div>
         <Check />
-        <span>
-          Check your inbox for instructions on resetting your password.
-        </span>
+        <span>{LL.ResetPassword.Status.Sent()}</span>
       </div>
     );
   }
@@ -34,7 +35,7 @@ export const ResetPasswordForm = () => {
           control={control}
           render={({ field }) => (
             <TextField
-              label="E-Mail"
+              label={LL.ResetPassword.Form.Email()}
               helperText={errors.emailAddress?.message}
               error={errors.emailAddress !== undefined}
               {...field}
@@ -51,7 +52,7 @@ export const ResetPasswordForm = () => {
           {state === EPasswordResetFormStages.loading ? (
             <CircularProgress />
           ) : (
-            <>Submit</>
+            <>{LL.ResetPassword.Form.ButtonSubmit()}</>
           )}
         </Button>
       </Stack>

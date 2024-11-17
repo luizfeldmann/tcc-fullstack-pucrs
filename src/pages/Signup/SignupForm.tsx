@@ -5,9 +5,12 @@ import { Controller } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { SignupResult } from "./SignupRequest";
 import { DoneSharp, PersonAdd } from "@mui/icons-material";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Form collecting data for a new user account */
 export const SignupForm = () => {
+  const { LL } = useI18nContext();
+
   const {
     control,
     errors,
@@ -22,7 +25,7 @@ export const SignupForm = () => {
     return (
       <div>
         <DoneSharp />
-        <span>Check your inbox for the confirmation link.</span>
+        <span>{LL.Signup.Status.Sent()}</span>
       </div>
     );
   } else {
@@ -31,7 +34,7 @@ export const SignupForm = () => {
       submitState === SignupFormSubmitPartialState.Loading ? (
         <CircularProgress />
       ) : (
-        <>Submit</>
+        <>{LL.Signup.Form.ButtonSubmit()}</>
       );
 
     return (
@@ -42,7 +45,7 @@ export const SignupForm = () => {
             control={control}
             render={({ field }) => (
               <TextField
-                label="First Name"
+                label={LL.Signup.Form.FirstName()}
                 helperText={errors.firstName?.message}
                 error={errors.firstName !== undefined}
                 {...field}
@@ -54,7 +57,7 @@ export const SignupForm = () => {
             control={control}
             render={({ field }) => (
               <TextField
-                label="Last Name"
+                label={LL.Signup.Form.LastName()}
                 helperText={errors.lastName?.message}
                 error={errors.lastName !== undefined}
                 {...field}
@@ -66,7 +69,7 @@ export const SignupForm = () => {
             control={control}
             render={({ field }) => (
               <TextField
-                label="E-Mail"
+                label={LL.Signup.Form.Email()}
                 helperText={errors.emailAddress?.message}
                 error={errors.emailAddress !== undefined}
                 {...field}
@@ -78,7 +81,7 @@ export const SignupForm = () => {
             control={control}
             render={({ field }) => (
               <TextField
-                label="Password"
+                label={LL.Signup.Form.Password()}
                 type="password"
                 helperText={errors.password?.message}
                 error={errors.password !== undefined}
@@ -91,7 +94,7 @@ export const SignupForm = () => {
             control={control}
             render={({ field }) => (
               <TextField
-                label="Confirm Password"
+                label={LL.Signup.Form.PasswordConfirmation()}
                 type="password"
                 helperText={errors.confirmPassword?.message}
                 error={errors.confirmPassword !== undefined}
@@ -109,7 +112,7 @@ export const SignupForm = () => {
             {submitButtonContent}
           </Button>
           {submitState === SignupResult.InternalError && (
-            <span>An unknown error has ocurred</span>
+            <span>{LL.Signup.Status.UnknownError()}</span>
           )}
         </Stack>
       </form>

@@ -6,6 +6,9 @@ import {
 import { Button, CircularProgress, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ERoutes } from "../../routes";
+import { useI18nContext } from "../../localization/i18n-react";
+import { TranslationFunctions } from "../../localization/i18n-types";
+import { useMemo } from "react";
 
 /** Parameters passed to the verification state component */
 export interface IVerifyAccountIndicatorParams {
@@ -26,32 +29,42 @@ type IndicationDictionary = {
   [K in EVerifyAccountStateIndicator]: IVerifyAccountIndication;
 };
 
-/** Mapping between verificatio states and the corresponding indication in the UI  */
-const verifyAccountIndications: IndicationDictionary = {
-  [EVerifyAccountStateIndicator.UnknownError]: {
-    text: "Unknown error",
-    icon: ErrorOutline,
-  },
-  [EVerifyAccountStateIndicator.Loading]: {
-    text: "Please wait while your account is verified",
-    icon: CircularProgress,
-  },
-  [EVerifyAccountStateIndicator.Success]: {
-    text: "Your account was verified successfully",
-    icon: Check,
-  },
-  [EVerifyAccountStateIndicator.AccountNotExist]: {
-    text: "No such account",
-    icon: SearchOff,
-  },
-  [EVerifyAccountStateIndicator.InvalidToken]: {
-    text: "The verification token is invalid",
-    icon: Block,
-  },
+/** Mapping between verification states and the corresponding indication in the UI  */
+const verifyAccountIndicationsFromLocale = (LL: TranslationFunctions) => {
+  return {
+    [EVerifyAccountStateIndicator.UnknownError]: {
+      text: LL.Verify.Status.UnknownError(),
+      icon: ErrorOutline,
+    },
+    [EVerifyAccountStateIndicator.Loading]: {
+      text: LL.Verify.Status.Loading(),
+      icon: CircularProgress,
+    },
+    [EVerifyAccountStateIndicator.Success]: {
+      text: LL.Verify.Status.Verified(),
+      icon: Check,
+    },
+    [EVerifyAccountStateIndicator.AccountNotExist]: {
+      text: LL.Verify.Status.NotExist(),
+      icon: SearchOff,
+    },
+    [EVerifyAccountStateIndicator.InvalidToken]: {
+      text: LL.Verify.Status.Invalid(),
+      icon: Block,
+    },
+  } satisfies IndicationDictionary;
 };
 
 /** Uses a token to verify a user and indicates the resulting state */
 const VerifyAccountIndicator = (params: IVerifyAccountIndicatorParams) => {
+  /** Localization text */
+  const { LL } = useI18nContext();
+
+  const verifyAccountIndications = useMemo(() => {
+    return verifyAccountIndicationsFromLocale(LL);
+  }, [LL]);
+
+  /** Indication state */
   const state = useVerifyAccountIndicator(params.token);
   const indication = verifyAccountIndications[state];
   const IndicationIcon = indication.icon;
@@ -64,7 +77,7 @@ const VerifyAccountIndicator = (params: IVerifyAccountIndicatorParams) => {
       </div>
       {state === EVerifyAccountStateIndicator.Success && (
         <Button variant="contained" component={Link} to={ERoutes.Login}>
-          Log-in
+          {LL.Verify.ButtonContinueLogin()}
         </Button>
       )}
     </Stack>

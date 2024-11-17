@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typesafe-i18n": "typesafe-i18n"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -28,6 +29,7 @@
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
     "status-code-enum": "^1.0.0",
+    "typesafe-i18n": "^5.26.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {

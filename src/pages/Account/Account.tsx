@@ -7,6 +7,7 @@ import { useState } from "react";
 import UpdateAccountBasicsForm from "./UpdateAccountBasicsForm";
 import UpdateAccountPasswordForm from "./UpdateAccountPasswordForm";
 import { Info, Security } from "@mui/icons-material";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Parameters passed to the account page */
 export interface IAccountPageParams {
@@ -18,6 +19,9 @@ export interface IAccountPageParams {
  * Page where the user consults or changes account information
  */
 const Account = (params: IAccountPageParams) => {
+  /** Localization */
+  const { LL } = useI18nContext();
+
   /** Indexes the tabs */
   enum ETabs {
     Basic,
@@ -36,18 +40,18 @@ const Account = (params: IAccountPageParams) => {
 
   return (
     <Stack>
-      <h1>Your Account</h1>
+      <h1>{LL.Account.Title()}</h1>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={currentTab} onChange={handleChangeTab}>
             <Tab
-              label="Basic"
+              label={LL.Account.BasicInfoTab()}
               iconPosition="start"
               icon={<Info />}
               value={ETabs.Basic}
             />
             <Tab
-              label="Security"
+              label={LL.Account.SecurityTab()}
               iconPosition="start"
               icon={<Security />}
               value={ETabs.Security}

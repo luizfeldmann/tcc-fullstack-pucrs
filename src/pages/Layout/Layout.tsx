@@ -4,11 +4,14 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import MyDrawer from "./MyDrawer";
 import MyProfileMenu from "./MyProfileMenu";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /**
  * Common layout wrapping most pages in the application
  */
 const Layout = () => {
+  const { LL } = useI18nContext();
+
   /** Manage the open/close state of the drawer menu */
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -32,7 +35,7 @@ const Layout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            App Title
+            {LL.Layout.AppTitle()}
           </Typography>
           <MyProfileMenu />
         </Toolbar>

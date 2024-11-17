@@ -8,6 +8,7 @@ import { EChangePasswordResult } from "./ChangePasswordRequest";
 import { Check, LockReset } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { ERoutes } from "../../routes";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Parameters passed to the verification state component */
 export interface IChangePasswordFormParams {
@@ -16,6 +17,10 @@ export interface IChangePasswordFormParams {
 }
 
 const ChangePasswordForm = (params: IChangePasswordFormParams) => {
+  // Localization for the form
+  const { LL } = useI18nContext();
+
+  // Logic for the form
   const { control, errors, disableSubmit, state, onSubmitHandler } =
     useChangePasswordForm(params.token);
 
@@ -25,10 +30,10 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
       <Stack>
         <div>
           <Check />
-          <span>Password changed successfully.</span>
+          <span>{LL.ChangePassword.SuccessMessage()}</span>
         </div>
         <Button variant="contained" component={Link} to={ERoutes.Login}>
-          Log-in
+          {LL.ChangePassword.ContinueLoginButton()}
         </Button>
       </Stack>
     );
@@ -43,7 +48,7 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
           control={control}
           render={({ field }) => (
             <TextField
-              label="Password"
+              label={LL.ChangePassword.Form.Password()}
               type="password"
               helperText={errors.password?.message}
               error={errors.password !== undefined}
@@ -56,7 +61,7 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
           control={control}
           render={({ field }) => (
             <TextField
-              label="Confirm Password"
+              label={LL.ChangePassword.Form.ConfirmPassword()}
               type="password"
               helperText={errors.confirmPassword?.message}
               error={errors.confirmPassword !== undefined}
@@ -73,7 +78,7 @@ const ChangePasswordForm = (params: IChangePasswordFormParams) => {
           {state === EChangePasswordFormIntermediate.Loading ? (
             <CircularProgress />
           ) : (
-            <span>Submit</span>
+            <span>{LL.ChangePassword.Form.Submit()}</span>
           )}
         </Button>
       </Stack>

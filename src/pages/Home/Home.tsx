@@ -1,6 +1,7 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useI18nContext } from "../../localization/i18n-react";
 import { ERoutes } from "../../routes";
 import { Login, PersonAdd } from "@mui/icons-material";
 
@@ -8,9 +9,11 @@ import { Login, PersonAdd } from "@mui/icons-material";
  * The landing page (index) of the site
  */
 const Home = () => {
+  const { LL } = useI18nContext();
+
   return (
     <>
-      <h1>Welcome</h1>
+      <h1>{LL.Home.Title()}</h1>
       <Stack>
         <Button
           variant="contained"
@@ -18,7 +21,7 @@ const Home = () => {
           component={Link}
           to={ERoutes.Login}
         >
-          Log-in
+          {LL.Home.LoginButton()}
         </Button>
         <Button
           variant="outlined"
@@ -26,7 +29,7 @@ const Home = () => {
           component={Link}
           to={ERoutes.Signup}
         >
-          Sign-up
+          {LL.Home.SignupButton()}
         </Button>
       </Stack>
     </>

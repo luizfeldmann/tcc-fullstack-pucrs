@@ -1,20 +1,23 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import zod from "zod";
 import {
   EResetPasswordResult,
   ResetPasswordRequest,
 } from "./ResetPasswordRequest";
+import { useI18nContext } from "../../localization/i18n-react";
+import { TranslationFunctions } from "../../localization/i18n-types";
 
 /** Validation of the fields for requesting a password reset */
-const resetPasswordFormSchema = zod.object({
-  emailAddress: zod
-    .string()
-    .min(1, "Address is required")
-    .email("Invalid e-mail"),
-});
-type resetPasswordFormData = zod.infer<typeof resetPasswordFormSchema>;
+const resetPasswordFormSchemaFromLocale = (LL: TranslationFunctions) => {
+  return zod.object({
+    emailAddress: zod
+      .string()
+      .min(1, LL.ResetPassword.Form.EmailRequired())
+      .email(LL.ResetPassword.Form.EmailInvalid()),
+  });
+};
 
 /** Intermediate states of the reset form */
 export enum EPasswordResetFormStages {
@@ -29,6 +32,17 @@ export type EPasswordResetFormState =
 
 /** Hook implementing the logic of the password-reset-request form */
 export const usePasswordResetForm = () => {
+  /** Localization of the form schema */
+  const { LL } = useI18nContext();
+
+  /** Validation of the fields for requesting a password reset */
+  const resetPasswordFormSchema = useMemo(() => {
+    return resetPasswordFormSchemaFromLocale(LL);
+  }, [LL]);
+
+  type resetPasswordFormData = zod.infer<typeof resetPasswordFormSchema>;
+
+  /** Form logic */
   const {
     control,
     handleSubmit,
@@ -54,7 +68,7 @@ export const usePasswordResetForm = () => {
     if (result === EResetPasswordResult.BadUser) {
       control.setError("emailAddress", {
         type: "custom",
-        message: "User not found.",
+        message: LL.ResetPassword.Status.BadUser(),
       });
     }
 

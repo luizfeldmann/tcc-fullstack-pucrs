@@ -9,8 +9,11 @@ import {
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ERoutes } from "../../routes";
+import { useI18nContext } from "../../localization/i18n-react";
 
 const MyProfileMenu = () => {
+  const { LL } = useI18nContext();
+
   /** Manages associating the profile menu with the clicked item */
   const [profileMenuAnchorEl, setProfileMenuAnchorEl] =
     useState<null | HTMLElement>(null);
@@ -61,13 +64,13 @@ const MyProfileMenu = () => {
           <ListItemIcon>
             <ManageAccounts />
           </ListItemIcon>
-          <ListItemText>Account</ListItemText>
+          <ListItemText>{LL.Layout.ProfileMenu.LinkAccount()}</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose} component={NavLink} to={ERoutes.Logout}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
-          <ListItemText>Logout</ListItemText>
+          <ListItemText>{LL.Layout.ProfileMenu.LinkLogoff()}</ListItemText>
         </MenuItem>
       </Menu>
     </>

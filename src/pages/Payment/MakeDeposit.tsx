@@ -1,4 +1,5 @@
 import LoginRedirect from "../../components/LoginRedirect";
+import { useI18nContext } from "../../localization/i18n-react";
 
 /** Parameters passed to the component */
 export interface IMakeDepositPageParams {
@@ -9,10 +10,12 @@ export interface IMakeDepositPageParams {
  * Page where the user may add more balance to the account
  */
 const MakeDeposit = (params: IMakeDepositPageParams) => {
+  const { LL } = useI18nContext();
+
   // Ensure the user is logged-in when accessing this page
   if (!params.token) return <LoginRedirect />;
 
-  return <h1>Add money to your balance</h1>;
+  return <h1>{LL.Deposit.Title()}</h1>;
 };
 
 export default MakeDeposit;

@@ -18,6 +18,7 @@ import {
 } from "@mui/icons-material";
 import { ERoutes } from "../../routes";
 import { NavLink } from "react-router-dom";
+import { useI18nContext } from "../../localization/i18n-react";
 
 const drawerWidth = 240;
 
@@ -59,6 +60,8 @@ export interface IMyDrawerParams {
  * The drawer menu on the left of the application
  */
 const MyDrawer = (params: IMyDrawerParams) => {
+  const { LL } = useI18nContext();
+
   return (
     <Drawer
       variant="temporary"
@@ -78,19 +81,27 @@ const MyDrawer = (params: IMyDrawerParams) => {
       <Toolbar />
       <Box sx={{ overflow: "auto" }}>
         <List>
-          <DrawerListItem text="Home" icon={Home} link={ERoutes.Index} />
           <DrawerListItem
-            text="Transactions"
+            text={LL.Layout.DrawerMenu.LinkHome()}
+            icon={Home}
+            link={ERoutes.Index}
+          />
+          <DrawerListItem
+            text={LL.Layout.DrawerMenu.LinkTransactions()}
             icon={Receipt}
             link={ERoutes.Transactions}
           />
           <DrawerListItem
-            text="Add Deposit"
+            text={LL.Layout.DrawerMenu.LinkDeposit()}
             icon={AttachMoney}
             link={ERoutes.Deposit}
           />
           <Divider />
-          <DrawerListItem text="About" icon={Help} link={ERoutes.About} />
+          <DrawerListItem
+            text={LL.Layout.DrawerMenu.LinkAbout()}
+            icon={Help}
+            link={ERoutes.About}
+          />
         </List>
       </Box>
     </Drawer>

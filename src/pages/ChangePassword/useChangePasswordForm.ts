@@ -5,21 +5,23 @@ import {
 } from "../../components/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ChangePasswordRequest,
   EChangePasswordResult,
 } from "./ChangePasswordRequest";
+import { useI18nContext } from "../../localization/i18n-react";
+import { TranslationFunctions } from "../../localization/i18n-types";
 
 /** Full signup form validation schema */
-const changePasswordFormSchema = zod
-  .object({
-    password: passwordSchema,
-    confirmPassword: zod.string().min(1, "Password confirmation is required"),
-  })
-  .superRefine(passwordConfirmationMatchRefinement);
-
-type changePasswordFormData = zod.infer<typeof changePasswordFormSchema>;
+const changePasswordFormSchema = (LL: TranslationFunctions) => {
+  return zod
+    .object({
+      password: passwordSchema(LL),
+      confirmPassword: zod.string().min(1, LL.PasswordRequirements.Required()),
+    })
+    .superRefine(passwordConfirmationMatchRefinement(LL));
+};
 
 /** Intermediate states for the form */
 export enum EChangePasswordFormIntermediate {
@@ -34,6 +36,15 @@ export type EChangePasswordFormState =
 
 /** Hook with logic for new password form */
 export const useChangePasswordForm = (token: string) => {
+  /** Localization for the form validation warnings */
+  const { LL } = useI18nContext();
+
+  const formSchema = useMemo(() => {
+    return changePasswordFormSchema(LL);
+  }, [LL]);
+
+  type changePasswordFormData = zod.infer<typeof formSchema>;
+
   // Use the react-hook-form
   const {
     control,
@@ -41,7 +52,7 @@ export const useChangePasswordForm = (token: string) => {
     formState: { isValid, errors },
   } = useForm<changePasswordFormData>({
     mode: "all",
-    resolver: zodResolver(changePasswordFormSchema),
+    resolver: zodResolver(formSchema),
   });
 
   // State of the execution

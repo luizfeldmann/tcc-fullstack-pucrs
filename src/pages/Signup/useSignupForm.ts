@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import zod from "zod";
 import { SignupRequest, SignupResult } from "./SignupRequest";
@@ -7,22 +7,26 @@ import {
   passwordConfirmationMatchRefinement,
   passwordSchema,
 } from "../../components/PasswordSchema";
+import { useI18nContext } from "../../localization/i18n-react";
+import { TranslationFunctions } from "../../localization/i18n-types";
 
-/** Full signup form validation schema */
-const signupFormSchema = zod
-  .object({
-    firstName: zod.string().min(1, "First name is required"),
-    lastName: zod.string().min(1, "Last name is required"),
-    emailAddress: zod
-      .string()
-      .min(1, "Address is required")
-      .email("Invalid e-mail"),
-    password: passwordSchema,
-    confirmPassword: zod.string().min(1, "Password confirmation is required"),
-  })
-  .superRefine(passwordConfirmationMatchRefinement);
-
-type signupFormData = zod.infer<typeof signupFormSchema>;
+/** Full signup form validation schema with localized warnings */
+const signupFormSchemaFromLocale = (LL: TranslationFunctions) => {
+  return zod
+    .object({
+      firstName: zod.string().min(1, LL.Signup.Form.FirstNameRequired()),
+      lastName: zod.string().min(1, LL.Signup.Form.LastNameRequired()),
+      emailAddress: zod
+        .string()
+        .min(1, LL.Signup.Form.EmailRequired())
+        .email(LL.Signup.Form.EmailRequired()),
+      password: passwordSchema(LL),
+      confirmPassword: zod
+        .string()
+        .min(1, LL.Signup.Form.PasswordConfirmationRequired()),
+    })
+    .superRefine(passwordConfirmationMatchRefinement(LL));
+};
 
 /** Intermediate states of the signup form (no success or error is determined) */
 export enum SignupFormSubmitPartialState {
@@ -35,6 +39,16 @@ export type SignupFormSubmitState = SignupResult | SignupFormSubmitPartialState;
 
 /** Hook with logic for the signup form */
 export const useSignupForm = () => {
+  /** Localization texts */
+  const { LL } = useI18nContext();
+
+  const signupFormSchema = useMemo(() => {
+    return signupFormSchemaFromLocale(LL);
+  }, [LL]);
+
+  type signupFormData = zod.infer<typeof signupFormSchema>;
+
+  /** Form logic */
   const {
     control,
     handleSubmit,
@@ -51,10 +65,9 @@ export const useSignupForm = () => {
   /** Invoked after the server responds with a status */
   const onSubmitResult = (result: SignupResult) => {
     if (result === SignupResult.AlreadyExists) {
-      console.log("Alredy exists error");
       control.setError("emailAddress", {
         type: "custom",
-        message: "User already registered",
+        message: LL.Signup.Status.AlreadyExists(),
       });
     }
 

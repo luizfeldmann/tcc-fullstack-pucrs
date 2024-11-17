@@ -1,4 +1,9 @@
+import { useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
+import { navigatorDetector } from "typesafe-i18n/detectors";
+import TypesafeI18n from "./localization/i18n-react";
+import { detectLocale } from "./localization/i18n-util.ts";
+import { loadLocale } from "./localization/i18n-util.sync";
 import { ERoutes } from "./routes.ts";
 import Home from "./pages/Home/Home.tsx";
 import About from "./pages/About/About.tsx";
@@ -20,8 +25,16 @@ function App() {
   /** Global state of the authentication of the session */
   const auth = useAuth();
 
+  /** Handle loading the locale (once) */
+  const detectedLocale = useMemo(() => {
+    const detectedLocale = detectLocale(navigatorDetector);
+    loadLocale(detectedLocale);
+
+    return detectedLocale;
+  }, []);
+
   return (
-    <div>
+    <TypesafeI18n locale={detectedLocale}>
       <Routes>
         {/** When logged of, present the 'Home' landing page */}
         {!auth.token && <Route index element={<Home />} />}
@@ -63,7 +76,7 @@ function App() {
           element={<Logout onLogout={auth.doLogoff} />}
         />
       </Routes>
-    </div>
+    </TypesafeI18n>
   );
 }
 
