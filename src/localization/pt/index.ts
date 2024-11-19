@@ -23,7 +23,7 @@ const pt = {
     Title: "Entrar",
     LinkForgotPassword: "Esqueci a senha",
     Form: {
-      Email: "Endereço de e-mail:",
+      Email: "Endereço de e-mail",
       EmailRequired: "O e-mail é obrigatório",
       EmailInvalid: "E-mail inválido",
       Password: "Senha",
@@ -76,8 +76,36 @@ const pt = {
     BasicInfoTab: "Geral",
     SecurityTab: "Segurança",
   },
+  BalanceCard: {
+    Label: "Seu saldo",
+    LinkDeposit: "Adicionar",
+  },
   Deposit: {
     Title: "Adicionar saldo",
+    PaymentMethodCreditCard: {
+      Title: "Cartão de Crédito",
+    },
+    PaymentMethodPix: {
+      Title: "PIX",
+    },
+    PaymentMethodRedeem: {
+      Title: "Resgatar Voucher",
+      Description:
+        "Utilize um código promocional ou cartão de presente para resgatar um saldo para sua conta",
+      Form: {
+        CodeField: "Código",
+        CodeFieldRequired: "Informe um código resgatável",
+        ButtonSubmit: "Resgatar",
+      },
+      Status: {
+        Success: "Os fundos foram depositados com sucesso em sua conta",
+        BadCode: "Este código não é válido",
+        ExpiredCode: "Este código já foi usado ou expirou",
+        UnknownError:
+          "O resgate não foi concluído devido a um erro desconhecido",
+      },
+    },
+    PaymentMethodComingSoon: "Disponível em breve",
   },
   Transactions: {
     Title: "Extrato de transações",

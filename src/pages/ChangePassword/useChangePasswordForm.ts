@@ -2,7 +2,7 @@ import zod from "zod";
 import {
   passwordConfirmationMatchRefinement,
   passwordSchema,
-} from "../../components/PasswordSchema";
+} from "../../schemas/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useMemo, useState } from "react";

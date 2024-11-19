@@ -1,5 +1,4 @@
 import { Stack } from "@mui/material";
-import LoginRedirect from "../../components/LoginRedirect";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -12,7 +11,7 @@ import { useI18nContext } from "../../localization/i18n-react";
 /** Parameters passed to the account page */
 export interface IAccountPageParams {
   /** The authentication token when logged in */
-  token?: string;
+  token: string;
 }
 
 /**
@@ -30,9 +29,6 @@ const Account = (params: IAccountPageParams) => {
 
   // Used to manage the active tab state
   const [currentTab, setCurrentTab] = useState<ETabs>(ETabs.Basic);
-
-  // Ensure the user is logged-in when accessing this page
-  if (!params.token) return <LoginRedirect />;
 
   const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
     setCurrentTab(newValue);

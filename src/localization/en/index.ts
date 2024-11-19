@@ -75,8 +75,35 @@ const en = {
     BasicInfoTab: "General",
     SecurityTab: "Security",
   },
+  BalanceCard: {
+    Label: "Your balance",
+    LinkDeposit: "Add money",
+  },
   Deposit: {
     Title: "Add money to your balance",
+    PaymentMethodCreditCard: {
+      Title: "Credit Card",
+    },
+    PaymentMethodPix: {
+      Title: "PIX",
+    },
+    PaymentMethodRedeem: {
+      Title: "Redeem",
+      Description:
+        "Use a promotional code or gift card to add balance to your account",
+      Form: {
+        CodeField: "Code",
+        CodeFieldRequired: "A redeemable code is required",
+        ButtonSubmit: "Redeem",
+      },
+      Status: {
+        Success: "Successfully deposited the funds to your account",
+        BadCode: "This code is invalid",
+        ExpiredCode: "This code is expired or was already used",
+        UnknownError: "An unknown error has occurred",
+      },
+    },
+    PaymentMethodComingSoon: "Coming Soon",
   },
   Transactions: {
     Title: "Your transactions",

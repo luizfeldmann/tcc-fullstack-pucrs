@@ -19,6 +19,7 @@ import { useAuth } from "./hooks/useAuth.ts";
 import Logout from "./pages/Logout/Logout.tsx";
 import TransactionStatement from "./pages/Payment/TransactionStatement.tsx";
 import MakeDeposit from "./pages/Payment/MakeDeposit.tsx";
+import { LoginRedirectGuard } from "./components/LoginRedirect.tsx";
 
 /** Application top-level */
 function App() {
@@ -45,18 +46,20 @@ function App() {
           {auth.token && <Route index element={<Main />} />}
 
           {/** For the following routes the authentication is mandatory */}
-          <Route
-            path={ERoutes.Account}
-            element={<Account token={auth.token} />}
-          />
-          <Route
-            path={ERoutes.Transactions}
-            element={<TransactionStatement token={auth.token} />}
-          />
-          <Route
-            path={ERoutes.Deposit}
-            element={<MakeDeposit token={auth.token} />}
-          />
+          <Route element={<LoginRedirectGuard token={auth.token} />}>
+            <Route
+              path={ERoutes.Account}
+              element={<Account token={auth.token!} />}
+            />
+            <Route
+              path={ERoutes.Transactions}
+              element={<TransactionStatement token={auth.token!} />}
+            />
+            <Route
+              path={ERoutes.Deposit}
+              element={<MakeDeposit token={auth.token!} />}
+            />
+          </Route>
         </Route>
 
         {/** Routes NOT using the layout */}

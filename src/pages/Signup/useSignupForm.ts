@@ -6,7 +6,7 @@ import { SignupRequest, SignupResult } from "./SignupRequest";
 import {
   passwordConfirmationMatchRefinement,
   passwordSchema,
-} from "../../components/PasswordSchema";
+} from "../../schemas/PasswordSchema";
 import { useI18nContext } from "../../localization/i18n-react";
 import { TranslationFunctions } from "../../localization/i18n-types";
 

@@ -5,3 +5,10 @@ import { API_URL } from "./constants.ts";
 export const appAxios = axios.create({
   baseURL: `${API_URL}/`,
 });
+
+/** Generates the authorization header */
+export const useAuthorization = (token: string) => {
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+};

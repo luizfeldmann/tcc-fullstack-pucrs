@@ -226,11 +226,79 @@ type RootTranslation = {
 		 */
 		SecurityTab: string
 	}
+	BalanceCard: {
+		/**
+		 * Y​o​u​r​ ​b​a​l​a​n​c​e
+		 */
+		Label: string
+		/**
+		 * A​d​d​ ​m​o​n​e​y
+		 */
+		LinkDeposit: string
+	}
 	Deposit: {
 		/**
 		 * A​d​d​ ​m​o​n​e​y​ ​t​o​ ​y​o​u​r​ ​b​a​l​a​n​c​e
 		 */
 		Title: string
+		PaymentMethodCreditCard: {
+			/**
+			 * C​r​e​d​i​t​ ​C​a​r​d
+			 */
+			Title: string
+		}
+		PaymentMethodPix: {
+			/**
+			 * P​I​X
+			 */
+			Title: string
+		}
+		PaymentMethodRedeem: {
+			/**
+			 * R​e​d​e​e​m
+			 */
+			Title: string
+			/**
+			 * U​s​e​ ​a​ ​p​r​o​m​o​t​i​o​n​a​l​ ​c​o​d​e​ ​o​r​ ​g​i​f​t​ ​c​a​r​d​ ​t​o​ ​a​d​d​ ​b​a​l​a​n​c​e​ ​t​o​ ​y​o​u​r​ ​a​c​c​o​u​n​t
+			 */
+			Description: string
+			Form: {
+				/**
+				 * C​o​d​e
+				 */
+				CodeField: string
+				/**
+				 * A​ ​r​e​d​e​e​m​a​b​l​e​ ​c​o​d​e​ ​i​s​ ​r​e​q​u​i​r​e​d
+				 */
+				CodeFieldRequired: string
+				/**
+				 * R​e​d​e​e​m
+				 */
+				ButtonSubmit: string
+			}
+			Status: {
+				/**
+				 * S​u​c​c​e​s​s​f​u​l​l​y​ ​d​e​p​o​s​i​t​e​d​ ​t​h​e​ ​f​u​n​d​s​ ​t​o​ ​y​o​u​r​ ​a​c​c​o​u​n​t
+				 */
+				Success: string
+				/**
+				 * T​h​i​s​ ​c​o​d​e​ ​i​s​ ​i​n​v​a​l​i​d
+				 */
+				BadCode: string
+				/**
+				 * T​h​i​s​ ​c​o​d​e​ ​i​s​ ​e​x​p​i​r​e​d​ ​o​r​ ​w​a​s​ ​a​l​r​e​a​d​y​ ​u​s​e​d
+				 */
+				ExpiredCode: string
+				/**
+				 * A​n​ ​u​n​k​n​o​w​n​ ​e​r​r​o​r​ ​h​a​s​ ​o​c​c​u​r​r​e​d
+				 */
+				UnknownError: string
+			}
+		}
+		/**
+		 * C​o​m​i​n​g​ ​S​o​o​n
+		 */
+		PaymentMethodComingSoon: string
 	}
 	Transactions: {
 		/**
@@ -553,11 +621,79 @@ export type TranslationFunctions = {
 		 */
 		SecurityTab: () => LocalizedString
 	}
+	BalanceCard: {
+		/**
+		 * Your balance
+		 */
+		Label: () => LocalizedString
+		/**
+		 * Add money
+		 */
+		LinkDeposit: () => LocalizedString
+	}
 	Deposit: {
 		/**
 		 * Add money to your balance
 		 */
 		Title: () => LocalizedString
+		PaymentMethodCreditCard: {
+			/**
+			 * Credit Card
+			 */
+			Title: () => LocalizedString
+		}
+		PaymentMethodPix: {
+			/**
+			 * PIX
+			 */
+			Title: () => LocalizedString
+		}
+		PaymentMethodRedeem: {
+			/**
+			 * Redeem
+			 */
+			Title: () => LocalizedString
+			/**
+			 * Use a promotional code or gift card to add balance to your account
+			 */
+			Description: () => LocalizedString
+			Form: {
+				/**
+				 * Code
+				 */
+				CodeField: () => LocalizedString
+				/**
+				 * A redeemable code is required
+				 */
+				CodeFieldRequired: () => LocalizedString
+				/**
+				 * Redeem
+				 */
+				ButtonSubmit: () => LocalizedString
+			}
+			Status: {
+				/**
+				 * Successfully deposited the funds to your account
+				 */
+				Success: () => LocalizedString
+				/**
+				 * This code is invalid
+				 */
+				BadCode: () => LocalizedString
+				/**
+				 * This code is expired or was already used
+				 */
+				ExpiredCode: () => LocalizedString
+				/**
+				 * An unknown error has occurred
+				 */
+				UnknownError: () => LocalizedString
+			}
+		}
+		/**
+		 * Coming Soon
+		 */
+		PaymentMethodComingSoon: () => LocalizedString
 	}
 	Transactions: {
 		/**
