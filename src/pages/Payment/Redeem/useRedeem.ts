@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ERedeemResult, RedeemRequest } from "./RedeemRequest";
+import { invalidateBalanceQuery } from "../../../components/BalanceCard/BalanceQuery";
 
 /** Validation of the form for the redeem code */
 const redeemSchemaFromLocale = (LL: TranslationFunctions) => {
@@ -58,6 +59,8 @@ export const useRedeem = (token: string): IRedeemFormState => {
           ...state,
           success: LL.Deposit.PaymentMethodRedeem.Status.Success(),
         }));
+        // Make sure the balance is read again
+        invalidateBalanceQuery();
         break;
 
       case ERedeemResult.ExpiredCode:

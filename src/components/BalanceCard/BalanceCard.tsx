@@ -7,9 +7,9 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import { useI18nContext } from "../localization/i18n-react";
+import { useI18nContext } from "../../localization/i18n-react";
 import { useMemo } from "react";
-import { ERoutes } from "../routes";
+import { ERoutes } from "../../routes";
 
 /** Parameters passed to the balance card */
 export interface IBalanceCardParams {

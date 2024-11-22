@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import StatusCode from "status-code-enum";
-import { appAxios, useAuthorization } from "../../../app-axios";
+import { appAxios, withAuthorizationHeader } from "../../../app-axios";
 
 export enum ERedeemResult {
   /** The reset request was successful */
@@ -50,7 +50,7 @@ export const RedeemRequest = (
   appAxios
     .post("redeem", req, {
       headers: {
-        ...useAuthorization(token),
+        ...withAuthorizationHeader(token),
       },
     })
     .then((resp) => {

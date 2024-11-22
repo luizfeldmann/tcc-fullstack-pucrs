@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
 import { useI18nContext } from "../../localization/i18n-react";
-import BalanceCard from "../../components/BalanceCard";
+import BalanceCard from "../../components/BalanceCard/BalanceCard";
 import { MethodsOfPaymentList } from "./MethodsOfPaymentList";
+import { useBalanceQuery } from "../../components/BalanceCard/BalanceQuery";
 
 /** Parameters passed to the component */
 export interface IMakeDepositPageParams {
@@ -14,8 +15,8 @@ export interface IMakeDepositPageParams {
 const MakeDeposit = (params: IMakeDepositPageParams) => {
   const { LL } = useI18nContext();
 
-  // TODO: implement queries
-  const balance = 0;
+  // Query the balance
+  const { data: balance } = useBalanceQuery(params.token);
 
   return (
     <Stack spacing={1}>

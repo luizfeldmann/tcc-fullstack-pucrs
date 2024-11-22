@@ -7,7 +7,7 @@ export const appAxios = axios.create({
 });
 
 /** Generates the authorization header */
-export const useAuthorization = (token: string) => {
+export const withAuthorizationHeader = (token: string) => {
   return {
     Authorization: `Bearer ${token}`,
   };
