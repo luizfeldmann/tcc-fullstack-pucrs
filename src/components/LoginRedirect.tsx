@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { ERoutes } from "../routes";
+import { useAuthContext } from "../hooks/useAuth";
 
 /** The query keyword for the redirect */
 export const loginRedirectQuery = "redirect";
@@ -15,13 +16,10 @@ export const LoginRedirect = () => {
   );
 };
 
-/** Arguments passed to the authentication guard */
-export interface ILoginRedirectAuthGuardParams {
-  token?: string;
-}
+/** Guards the contained routes against un-authenticated access */
+export const LoginRedirectGuard = () => {
+  const token = useAuthContext();
 
-/** Guards the contained routes agains un-authenticated access */
-export const LoginRedirectGuard = (params: ILoginRedirectAuthGuardParams) => {
-  if (params.token) return <Outlet />;
+  if (token) return <Outlet />;
   else return <LoginRedirect />;
 };

@@ -1,13 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { z } from "zod";
-
-/** Schema to validate and parse the authentication data */
-const authSchema = z.object({
-  token: z.string(),
-});
-
-/** Type of the authentication data object */
-type IAuthData = z.infer<typeof authSchema>;
+import { createContext, useCallback, useContext, useState } from "react";
 
 /** Key of the storage item used for auth */
 const autoLocalStorageName = "user-auth";
@@ -27,39 +18,33 @@ export interface IAuthHook {
 /** Implements persistent storage of the authentication state */
 export const useAuth = (): IAuthHook => {
   // Initialize the state by reading from browser local storage
-  const [state, setState] = useState<IAuthData | undefined>(() => {
+  const [state, setState] = useState<string | undefined>(() => {
     const readStorage = localStorage.getItem(autoLocalStorageName);
-    return readStorage
-      ? authSchema.safeParse(JSON.parse(readStorage)).data
-      : undefined;
+    return readStorage ? readStorage : undefined;
   });
-
-  // Every time the state changes, save it to the browser
-  useEffect(() => {
-    if (state) {
-      localStorage.setItem(autoLocalStorageName, JSON.stringify(state));
-    } else {
-      localStorage.removeItem(autoLocalStorageName);
-    }
-  }, [state]);
 
   // Callback to assign a new token to perform the login
   const doLogin = useCallback(
     (token: string) => {
-      setState({
-        token: token,
-      });
+      localStorage.setItem(autoLocalStorageName, token);
+      setState(token);
     },
     [setState]
   );
 
   // Callback to remove the authentication
   const doLogoff = useCallback(() => {
+    localStorage.removeItem(autoLocalStorageName);
     setState(undefined);
   }, [setState]);
 
-  // When logged in, contains the user's token
-  const token = state?.token;
+  return { token: state, doLogin, doLogoff };
+};
 
-  return { token, doLogin, doLogoff };
+/** Context used to read the authentication */
+export const AuthContext = createContext<string | undefined>(undefined);
+
+/** Reads the authentication token from the context */
+export const useAuthContext = () => {
+  return useContext(AuthContext);
 };

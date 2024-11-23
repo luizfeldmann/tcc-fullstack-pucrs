@@ -21,16 +21,12 @@ import { useI18nContext } from "../../localization/i18n-react";
 import { useCallback } from "react";
 import { useRedeem } from "./Redeem/useRedeem";
 import { RedeemForm } from "./Redeem/RedeemForm";
-
-/** Parameters passed to the list of payment methods */
-export interface IMethodsOfPaymentListParams {
-  token: string;
-}
+import { useAuthContext } from "../../hooks/useAuth";
 
 /**
  * Group of accordions with multiple methods of payment implement inside
  */
-export const MethodsOfPaymentList = (params: IMethodsOfPaymentListParams) => {
+export const MethodsOfPaymentList = () => {
   /** Use localization */
   const { LL } = useI18nContext();
 
@@ -45,8 +41,11 @@ export const MethodsOfPaymentList = (params: IMethodsOfPaymentListParams) => {
     );
   }, [LL]);
 
+  /** Get authentication */
+  const token = useAuthContext();
+
   /** Logic for the redeem code */
-  const redeemState = useRedeem(params.token);
+  const redeemState = useRedeem(token!);
 
   return (
     <Box>

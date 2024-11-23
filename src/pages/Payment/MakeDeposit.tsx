@@ -3,26 +3,25 @@ import { useI18nContext } from "../../localization/i18n-react";
 import BalanceCard from "../../components/BalanceCard/BalanceCard";
 import { MethodsOfPaymentList } from "./MethodsOfPaymentList";
 import { useBalanceQuery } from "../../components/BalanceCard/BalanceQuery";
-
-/** Parameters passed to the component */
-export interface IMakeDepositPageParams {
-  token: string;
-}
+import { useAuthContext } from "../../hooks/useAuth";
 
 /**
  * Page where the user may add more balance to the account
  */
-const MakeDeposit = (params: IMakeDepositPageParams) => {
+const MakeDeposit = () => {
   const { LL } = useI18nContext();
 
+  // Get authenticated user
+  const token = useAuthContext();
+
   // Query the balance
-  const { data: balance } = useBalanceQuery(params.token);
+  const { data: balance } = useBalanceQuery(token!);
 
   return (
     <Stack spacing={1}>
       <h1>{LL.Deposit.Title()}</h1>
       <BalanceCard enableDepositLink={false} balance={balance} />
-      <MethodsOfPaymentList token={params.token} />
+      <MethodsOfPaymentList />
     </Stack>
   );
 };

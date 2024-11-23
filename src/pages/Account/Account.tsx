@@ -8,16 +8,10 @@ import UpdateAccountPasswordForm from "./UpdateAccountPasswordForm";
 import { Info, Security } from "@mui/icons-material";
 import { useI18nContext } from "../../localization/i18n-react";
 
-/** Parameters passed to the account page */
-export interface IAccountPageParams {
-  /** The authentication token when logged in */
-  token: string;
-}
-
 /**
  * Page where the user consults or changes account information
  */
-const Account = (params: IAccountPageParams) => {
+const Account = () => {
   /** Localization */
   const { LL } = useI18nContext();
 
