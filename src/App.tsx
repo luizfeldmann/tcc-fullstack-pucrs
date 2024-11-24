@@ -36,49 +36,45 @@ function App() {
 
   return (
     <TypesafeI18n locale={detectedLocale}>
-      <Routes>
-        {/** When logged of, present the 'Home' landing page */}
-        {!auth.token && <Route index element={<Home />} />}
+      <AuthContext.Provider value={auth.token}>
+        <Routes>
+          {/** When logged of, present the 'Home' landing page */}
+          {!auth.token && <Route index element={<Home />} />}
 
-        {/** Routes using the common layout */}
-        <Route path={ERoutes.Index} element={<Layout />}>
-          {/** The user's 'Main' is only available when logged-in */}
-          {auth.token && <Route index element={<Main />} />}
+          {/** Routes using the common layout */}
+          <Route path={ERoutes.Index} element={<Layout />}>
+            {/** The user's 'Main' is only available when logged-in */}
+            {auth.token && <Route index element={<Main />} />}
 
-          {/** For the following routes the authentication is mandatory */}
-          <Route
-            element={
-              <AuthContext.Provider value={auth.token}>
-                <LoginRedirectGuard />
-              </AuthContext.Provider>
-            }
-          >
-            <Route path={ERoutes.Account} element={<Account />} />
-            <Route
-              path={ERoutes.Transactions}
-              element={<TransactionStatement />}
-            />
-            <Route path={ERoutes.Deposit} element={<MakeDeposit />} />
+            {/** For the following routes the authentication is mandatory */}
+            <Route element={<LoginRedirectGuard />}>
+              <Route path={ERoutes.Account} element={<Account />} />
+              <Route
+                path={ERoutes.Transactions}
+                element={<TransactionStatement />}
+              />
+              <Route path={ERoutes.Deposit} element={<MakeDeposit />} />
+            </Route>
           </Route>
-        </Route>
 
-        {/** Routes NOT using the layout */}
-        <Route path={ERoutes.About} element={<About />} />
-        <Route
-          path={ERoutes.Login}
-          element={<Login onLogin={auth.doLogin} />}
-        />
-        <Route path={ERoutes.Signup} element={<Signup />} />
-        <Route path={ERoutes.Verify} element={<Verify />} />
-        <Route path={ERoutes.ChangePassword} element={<ChangePassword />} />
-        <Route path={ERoutes.ResetPassword} element={<ResetPassword />} />
+          {/** Routes NOT using the layout */}
+          <Route path={ERoutes.About} element={<About />} />
+          <Route
+            path={ERoutes.Login}
+            element={<Login onLogin={auth.doLogin} />}
+          />
+          <Route path={ERoutes.Signup} element={<Signup />} />
+          <Route path={ERoutes.Verify} element={<Verify />} />
+          <Route path={ERoutes.ChangePassword} element={<ChangePassword />} />
+          <Route path={ERoutes.ResetPassword} element={<ResetPassword />} />
 
-        {/** Virtual page only used to log the user out/off */}
-        <Route
-          path={ERoutes.Logout}
-          element={<Logout onLogout={auth.doLogoff} />}
-        />
-      </Routes>
+          {/** Virtual page only used to log the user out/off */}
+          <Route
+            path={ERoutes.Logout}
+            element={<Logout onLogout={auth.doLogoff} />}
+          />
+        </Routes>
+      </AuthContext.Provider>
     </TypesafeI18n>
   );
 }
