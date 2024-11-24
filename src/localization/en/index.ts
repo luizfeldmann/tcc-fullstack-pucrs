@@ -74,6 +74,10 @@ const en = {
     Title: "Your account",
     BasicInfoTab: {
       Title: "General",
+      UpdateInfoForm: {
+        Title: "Update your personal information",
+        SubmitButton: "Update",
+      },
     },
     SecurityTab: {
       Title: "Security",

@@ -5,6 +5,7 @@ import {
   CircularProgress,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { useUpdateAccountPasswordForm } from "./useUpdataAccountPasswordForm";
@@ -77,14 +78,16 @@ const UpdateAccountPasswordForm = () => {
             />
           )}
         />
-        <Button
-          variant="contained"
-          type="submit"
-          startIcon={isLoading ? <CircularProgress /> : <LockReset />}
-          disabled={disableSubmit}
-        >
-          {!isLoading && LL.ChangePassword.Form.Submit()}
-        </Button>
+        <Typography align="center">
+          <Button
+            variant="contained"
+            type="submit"
+            startIcon={isLoading ? <CircularProgress /> : <LockReset />}
+            disabled={disableSubmit}
+          >
+            {!isLoading && LL.ChangePassword.Form.Submit()}
+          </Button>
+        </Typography>
       </Stack>
     </form>
   );

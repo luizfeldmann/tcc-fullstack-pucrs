@@ -75,6 +75,10 @@ const pt = {
     Title: "Sua conta",
     BasicInfoTab: {
       Title: "Geral",
+      UpdateInfoForm: {
+        Title: "Atualizar seus dados pessoais",
+        SubmitButton: "Atualizar",
+      },
     },
     SecurityTab: {
       Title: "Segurança",

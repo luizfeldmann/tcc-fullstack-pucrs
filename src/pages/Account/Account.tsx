@@ -49,6 +49,7 @@ const Account = () => {
           </Tabs>
         </Box>
         <div hidden={currentTab != ETabs.Basic}>
+          <h2>{LL.Account.BasicInfoTab.UpdateInfoForm.Title()}</h2>
           <UpdateAccountBasicsForm />
         </div>
         <div hidden={currentTab != ETabs.Security}>

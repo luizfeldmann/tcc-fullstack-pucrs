@@ -222,6 +222,16 @@ type RootTranslation = {
 			 * G​e​n​e​r​a​l
 			 */
 			Title: string
+			UpdateInfoForm: {
+				/**
+				 * U​p​d​a​t​e​ ​y​o​u​r​ ​p​e​r​s​o​n​a​l​ ​i​n​f​o​r​m​a​t​i​o​n
+				 */
+				Title: string
+				/**
+				 * U​p​d​a​t​e
+				 */
+				SubmitButton: string
+			}
 		}
 		SecurityTab: {
 			/**
@@ -657,6 +667,16 @@ export type TranslationFunctions = {
 			 * General
 			 */
 			Title: () => LocalizedString
+			UpdateInfoForm: {
+				/**
+				 * Update your personal information
+				 */
+				Title: () => LocalizedString
+				/**
+				 * Update
+				 */
+				SubmitButton: () => LocalizedString
+			}
 		}
 		SecurityTab: {
 			/**
