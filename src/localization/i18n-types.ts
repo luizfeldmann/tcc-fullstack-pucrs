@@ -305,6 +305,32 @@ type RootTranslation = {
 		 * Y​o​u​r​ ​t​r​a​n​s​a​c​t​i​o​n​s
 		 */
 		Title: string
+		Table: {
+			Columns: {
+				/**
+				 * D​a​t​e
+				 */
+				Date: string
+				/**
+				 * V​a​l​u​e
+				 */
+				Value: string
+				/**
+				 * D​e​s​c​r​i​p​t​i​o​n
+				 */
+				Description: string
+			}
+			TypeDescriptions: {
+				/**
+				 * R​e​d​e​e​m​e​d​ ​a​ ​c​o​d​e
+				 */
+				Redeem: string
+				/**
+				 * P​u​r​c​h​a​s​e
+				 */
+				Purchase: string
+			}
+		}
 	}
 	PasswordRequirements: {
 		/**
@@ -700,6 +726,32 @@ export type TranslationFunctions = {
 		 * Your transactions
 		 */
 		Title: () => LocalizedString
+		Table: {
+			Columns: {
+				/**
+				 * Date
+				 */
+				Date: () => LocalizedString
+				/**
+				 * Value
+				 */
+				Value: () => LocalizedString
+				/**
+				 * Description
+				 */
+				Description: () => LocalizedString
+			}
+			TypeDescriptions: {
+				/**
+				 * Redeemed a code
+				 */
+				Redeem: () => LocalizedString
+				/**
+				 * Purchase
+				 */
+				Purchase: () => LocalizedString
+			}
+		}
 	}
 	PasswordRequirements: {
 		/**

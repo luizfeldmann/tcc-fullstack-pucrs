@@ -109,6 +109,17 @@ const pt = {
   },
   Transactions: {
     Title: "Extrato de transações",
+    Table: {
+      Columns: {
+        Date: "Data",
+        Value: "Valor",
+        Description: "Descrição",
+      },
+      TypeDescriptions: {
+        Redeem: "Resgatou um código",
+        Purchase: "Efetuou uma compra",
+      },
+    },
   },
   PasswordRequirements: {
     MinLen: "Requer o tamanho mínimo de {0} caracteres",

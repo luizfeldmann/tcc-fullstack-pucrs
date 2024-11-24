@@ -107,6 +107,17 @@ const en = {
   },
   Transactions: {
     Title: "Your transactions",
+    Table: {
+      Columns: {
+        Date: "Date",
+        Value: "Value",
+        Description: "Description",
+      },
+      TypeDescriptions: {
+        Redeem: "Redeemed a code",
+        Purchase: "Purchase",
+      },
+    },
   },
   PasswordRequirements: {
     MinLen: "Length must be at least {0:number} characters",
