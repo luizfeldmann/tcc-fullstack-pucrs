@@ -72,8 +72,16 @@ const en = {
   },
   Account: {
     Title: "Your account",
-    BasicInfoTab: "General",
-    SecurityTab: "Security",
+    BasicInfoTab: {
+      Title: "General",
+    },
+    SecurityTab: {
+      Title: "Security",
+      UpdatePasswordForm: {
+        Title: "Update your password",
+        OldPassword: "Current password",
+      },
+    },
   },
   BalanceCard: {
     Label: "Your balance",
@@ -146,7 +154,7 @@ const en = {
     SuccessMessage: "Password changed successfully",
     ContinueLoginButton: "Log-in",
     Form: {
-      Password: "New password:",
+      Password: "New password",
       ConfirmPassword: "New password confirmation",
       Submit: "Save change",
     },

@@ -217,14 +217,28 @@ type RootTranslation = {
 		 * Y​o​u​r​ ​a​c​c​o​u​n​t
 		 */
 		Title: string
-		/**
-		 * G​e​n​e​r​a​l
-		 */
-		BasicInfoTab: string
-		/**
-		 * S​e​c​u​r​i​t​y
-		 */
-		SecurityTab: string
+		BasicInfoTab: {
+			/**
+			 * G​e​n​e​r​a​l
+			 */
+			Title: string
+		}
+		SecurityTab: {
+			/**
+			 * S​e​c​u​r​i​t​y
+			 */
+			Title: string
+			UpdatePasswordForm: {
+				/**
+				 * U​p​d​a​t​e​ ​y​o​u​r​ ​p​a​s​s​w​o​r​d
+				 */
+				Title: string
+				/**
+				 * C​u​r​r​e​n​t​ ​p​a​s​s​w​o​r​d
+				 */
+				OldPassword: string
+			}
+		}
 	}
 	BalanceCard: {
 		/**
@@ -413,7 +427,7 @@ type RootTranslation = {
 		ContinueLoginButton: string
 		Form: {
 			/**
-			 * N​e​w​ ​p​a​s​s​w​o​r​d​:
+			 * N​e​w​ ​p​a​s​s​w​o​r​d
 			 */
 			Password: string
 			/**
@@ -638,14 +652,28 @@ export type TranslationFunctions = {
 		 * Your account
 		 */
 		Title: () => LocalizedString
-		/**
-		 * General
-		 */
-		BasicInfoTab: () => LocalizedString
-		/**
-		 * Security
-		 */
-		SecurityTab: () => LocalizedString
+		BasicInfoTab: {
+			/**
+			 * General
+			 */
+			Title: () => LocalizedString
+		}
+		SecurityTab: {
+			/**
+			 * Security
+			 */
+			Title: () => LocalizedString
+			UpdatePasswordForm: {
+				/**
+				 * Update your password
+				 */
+				Title: () => LocalizedString
+				/**
+				 * Current password
+				 */
+				OldPassword: () => LocalizedString
+			}
+		}
 	}
 	BalanceCard: {
 		/**
@@ -832,7 +860,7 @@ export type TranslationFunctions = {
 		ContinueLoginButton: () => LocalizedString
 		Form: {
 			/**
-			 * New password:
+			 * New password
 			 */
 			Password: () => LocalizedString
 			/**

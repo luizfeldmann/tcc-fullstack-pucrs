@@ -3,8 +3,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useState } from "react";
-import UpdateAccountBasicsForm from "./UpdateAccountBasicsForm";
-import UpdateAccountPasswordForm from "./UpdateAccountPasswordForm";
+import UpdateAccountBasicsForm from "./Basic/UpdateAccountBasicsForm";
+import UpdateAccountPasswordForm from "./Security/UpdateAccountPasswordForm";
 import { Info, Security } from "@mui/icons-material";
 import { useI18nContext } from "../../localization/i18n-react";
 
@@ -35,13 +35,13 @@ const Account = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={currentTab} onChange={handleChangeTab}>
             <Tab
-              label={LL.Account.BasicInfoTab()}
+              label={LL.Account.BasicInfoTab.Title()}
               iconPosition="start"
               icon={<Info />}
               value={ETabs.Basic}
             />
             <Tab
-              label={LL.Account.SecurityTab()}
+              label={LL.Account.SecurityTab.Title()}
               iconPosition="start"
               icon={<Security />}
               value={ETabs.Security}
@@ -52,6 +52,7 @@ const Account = () => {
           <UpdateAccountBasicsForm />
         </div>
         <div hidden={currentTab != ETabs.Security}>
+          <h2>{LL.Account.SecurityTab.UpdatePasswordForm.Title()}</h2>
           <UpdateAccountPasswordForm />
         </div>
       </Box>

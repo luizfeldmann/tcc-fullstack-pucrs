@@ -73,8 +73,16 @@ const pt = {
   },
   Account: {
     Title: "Sua conta",
-    BasicInfoTab: "Geral",
-    SecurityTab: "Segurança",
+    BasicInfoTab: {
+      Title: "Geral",
+    },
+    SecurityTab: {
+      Title: "Segurança",
+      UpdatePasswordForm: {
+        Title: "Alterar sua senha",
+        OldPassword: "Senha atual",
+      },
+    },
   },
   BalanceCard: {
     Label: "Seu saldo",
