@@ -9,5 +9,9 @@ export enum ERoutes {
   ResetPassword = "/reset-password",
   Account = "/account",
   Transactions = "/transactions",
-  Deposit = "deposit",
+  Deposit = "/deposit",
+  Stores = "/stores",
+  StoreDetails = "/store",
+  Products = "/products",
+  ProductDetails = "/product",
 }

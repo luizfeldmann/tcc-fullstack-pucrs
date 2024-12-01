@@ -20,6 +20,8 @@ import Logout from "./pages/Logout/Logout.tsx";
 import TransactionStatement from "./pages/Payment/TransactionStatement.tsx";
 import MakeDeposit from "./pages/Payment/MakeDeposit.tsx";
 import { LoginRedirectGuard } from "./components/LoginRedirect.tsx";
+import Products from "./pages/Products/Products.tsx";
+import Stores from "./pages/Stores/Stores.tsx";
 
 /** Application top-level */
 function App() {
@@ -54,6 +56,8 @@ function App() {
                 element={<TransactionStatement />}
               />
               <Route path={ERoutes.Deposit} element={<MakeDeposit />} />
+              <Route path={ERoutes.Products} element={<Products />} />
+              <Route path={ERoutes.Stores} element={<Stores />} />
             </Route>
           </Route>
 

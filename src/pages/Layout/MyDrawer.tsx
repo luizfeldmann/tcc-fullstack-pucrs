@@ -14,6 +14,8 @@ import {
   Help,
   Home,
   Receipt,
+  ShoppingBag,
+  Store,
   SvgIconComponent,
 } from "@mui/icons-material";
 import { ERoutes } from "../../routes";
@@ -86,6 +88,7 @@ const MyDrawer = (params: IMyDrawerParams) => {
             icon={Home}
             link={ERoutes.Index}
           />
+          <Divider />
           <DrawerListItem
             text={LL.Layout.DrawerMenu.LinkTransactions()}
             icon={Receipt}
@@ -95,6 +98,17 @@ const MyDrawer = (params: IMyDrawerParams) => {
             text={LL.Layout.DrawerMenu.LinkDeposit()}
             icon={AttachMoney}
             link={ERoutes.Deposit}
+          />
+          <Divider />
+          <DrawerListItem
+            text={LL.Layout.DrawerMenu.LinkStores()}
+            icon={Store}
+            link={ERoutes.Stores}
+          />
+          <DrawerListItem
+            text={LL.Layout.DrawerMenu.LinkProducts()}
+            icon={ShoppingBag}
+            link={ERoutes.Products}
           />
           <Divider />
           <DrawerListItem

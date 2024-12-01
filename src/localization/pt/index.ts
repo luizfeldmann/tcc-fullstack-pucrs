@@ -11,6 +11,8 @@ const pt = {
       LinkHome: "Início",
       LinkTransactions: "Extrato",
       LinkDeposit: "Depositar Saldo",
+      LinkStores: "Pontos de Venda",
+      LinkProducts: "Produtos",
       LinkAbout: "Sobre",
     },
   },
@@ -132,6 +134,18 @@ const pt = {
         Purchase: "Efetuou uma compra",
       },
     },
+  },
+  Stores: {
+    Title: "Pontos de Venda",
+    OpenStatus: "Aberto",
+    OpeningTime: "Abre às {0}",
+    ClosedStatus: "Fechado",
+    ClosingTime: "Fecha às {0}",
+    OpeningDay: "Abre na {0}",
+    NoInfo: "Sem dados de horário",
+  },
+  Products: {
+    Title: "Produtos",
   },
   PasswordRequirements: {
     MinLen: "Requer o tamanho mínimo de {0} caracteres",

@@ -11,6 +11,8 @@ const en = {
       LinkHome: "Home",
       LinkTransactions: "Transactions",
       LinkDeposit: "Add Deposit",
+      LinkStores: "Seller Locations",
+      LinkProducts: "Products",
       LinkAbout: "About",
     },
   },
@@ -130,6 +132,18 @@ const en = {
         Purchase: "Purchase",
       },
     },
+  },
+  Stores: {
+    Title: "Stores",
+    OpenStatus: "Open",
+    OpeningTime: "Opens at {0:string}",
+    ClosedStatus: "Closed",
+    ClosingTime: "Closes at {0:string}",
+    OpeningDay: "Opens on {0:string}",
+    NoInfo: "No hours info",
+  },
+  Products: {
+    Title: "Products",
   },
   PasswordRequirements: {
     MinLen: "Length must be at least {0:number} characters",

@@ -43,6 +43,14 @@ type RootTranslation = {
 			 */
 			LinkDeposit: string
 			/**
+			 * S​e​l​l​e​r​ ​L​o​c​a​t​i​o​n​s
+			 */
+			LinkStores: string
+			/**
+			 * P​r​o​d​u​c​t​s
+			 */
+			LinkProducts: string
+			/**
 			 * A​b​o​u​t
 			 */
 			LinkAbout: string
@@ -356,6 +364,45 @@ type RootTranslation = {
 			}
 		}
 	}
+	Stores: {
+		/**
+		 * S​t​o​r​e​s
+		 */
+		Title: string
+		/**
+		 * O​p​e​n
+		 */
+		OpenStatus: string
+		/**
+		 * O​p​e​n​s​ ​a​t​ ​{​0​}
+		 * @param {string} 0
+		 */
+		OpeningTime: RequiredParams<'0'>
+		/**
+		 * C​l​o​s​e​d
+		 */
+		ClosedStatus: string
+		/**
+		 * C​l​o​s​e​s​ ​a​t​ ​{​0​}
+		 * @param {string} 0
+		 */
+		ClosingTime: RequiredParams<'0'>
+		/**
+		 * O​p​e​n​s​ ​o​n​ ​{​0​}
+		 * @param {string} 0
+		 */
+		OpeningDay: RequiredParams<'0'>
+		/**
+		 * N​o​ ​h​o​u​r​s​ ​i​n​f​o
+		 */
+		NoInfo: string
+	}
+	Products: {
+		/**
+		 * P​r​o​d​u​c​t​s
+		 */
+		Title: string
+	}
 	PasswordRequirements: {
 		/**
 		 * L​e​n​g​t​h​ ​m​u​s​t​ ​b​e​ ​a​t​ ​l​e​a​s​t​ ​{​0​}​ ​c​h​a​r​a​c​t​e​r​s
@@ -487,6 +534,14 @@ export type TranslationFunctions = {
 			 * Add Deposit
 			 */
 			LinkDeposit: () => LocalizedString
+			/**
+			 * Seller Locations
+			 */
+			LinkStores: () => LocalizedString
+			/**
+			 * Products
+			 */
+			LinkProducts: () => LocalizedString
 			/**
 			 * About
 			 */
@@ -800,6 +855,42 @@ export type TranslationFunctions = {
 				Purchase: () => LocalizedString
 			}
 		}
+	}
+	Stores: {
+		/**
+		 * Stores
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Open
+		 */
+		OpenStatus: () => LocalizedString
+		/**
+		 * Opens at {0}
+		 */
+		OpeningTime: (arg0: string) => LocalizedString
+		/**
+		 * Closed
+		 */
+		ClosedStatus: () => LocalizedString
+		/**
+		 * Closes at {0}
+		 */
+		ClosingTime: (arg0: string) => LocalizedString
+		/**
+		 * Opens on {0}
+		 */
+		OpeningDay: (arg0: string) => LocalizedString
+		/**
+		 * No hours info
+		 */
+		NoInfo: () => LocalizedString
+	}
+	Products: {
+		/**
+		 * Products
+		 */
+		Title: () => LocalizedString
 	}
 	PasswordRequirements: {
 		/**
