@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/lib/components/Providers/AuthProvider";
 import { ClientThemeProvider } from "@/lib/components/Providers/ClientThemeProvider";
 import { ServerLocaleProvider } from "@/lib/components/Providers/ServerLocaleProvider";
 
@@ -6,7 +7,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <ClientThemeProvider>
-          <ServerLocaleProvider>{props.children}</ServerLocaleProvider>
+          <ServerLocaleProvider>
+            <AuthProvider>{props.children}</AuthProvider>
+          </ServerLocaleProvider>
         </ClientThemeProvider>
       </body>
     </html>
