@@ -1,0 +1,40 @@
+version: '3.9'
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  dev-net:
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - dev-net
+    volumes:
+      - mongo-data:/data/db
+
+  nextapp:
+    container_name: nextapp
+    image: nextapp
+    build: .
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+    networks:
+      - dev-net
+    environment:
+      # Client-visible
+      - PUBLIC_RECAPTCHA_CLIENT_KEY=${PUBLIC_RECAPTCHA_CLIENT_KEY}
+      # Server-only
+      - MONGO_URI=mongodb://mongo:27017
+      - JWT_PVT_KEY=${JWT_PVT_KEY}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
