@@ -1,13 +1,10 @@
-import { z } from "zod";
+"use server";
 
-const publicEnvironmentSchema = z.object({
-  NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY: z.string(),
-});
+import { serverEnvironment } from "./ServerEnvironment";
 
-export type IPublicEnvironment = z.infer<typeof publicEnvironmentSchema>;
-
-export const publicEnvironment: IPublicEnvironment =
-  publicEnvironmentSchema.parse({
-    NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY:
-      process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY,
-  });
+/** Reads the subset of environment variables which may be visible from the client-side */
+export async function readPublicEnvironment() {
+  return {
+    PUBLIC_RECAPTCHA_CLIENT_KEY: serverEnvironment.PUBLIC_RECAPTCHA_CLIENT_KEY,
+  };
+}

@@ -9,14 +9,13 @@ import {
 } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 import { Controller } from "react-hook-form";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useI18nContext } from "../../localization/i18n-react";
-import { publicEnvironment } from "@/lib/constants/PublicEnvironment";
 import {
   SignupFormSubmitPartialState,
   SignupResult,
   useSignupForm,
 } from "./useSignupForm";
+import { Captcha } from "../Captcha/Captcha";
 
 /** Form collecting data for a new user account */
 export const SignupForm = () => {
@@ -109,10 +108,7 @@ export const SignupForm = () => {
             />
           )}
         />
-        <ReCAPTCHA
-          sitekey={publicEnvironment.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY}
-          onChange={onCaptcha}
-        />
+        <Captcha onChange={onCaptcha} />
         <Button
           variant="contained"
           type="submit"

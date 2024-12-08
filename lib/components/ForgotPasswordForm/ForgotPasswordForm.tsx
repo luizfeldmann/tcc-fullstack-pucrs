@@ -1,4 +1,3 @@
-import { publicEnvironment } from "@/lib/constants/PublicEnvironment";
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { Send } from "@mui/icons-material";
 import {
@@ -8,14 +7,16 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Controller } from "react-hook-form";
 import { useForgotPasswordForm } from "./useForgotPasswordForm";
+import { Captcha } from "../Captcha/Captcha";
 
 /** Form component where the user will insert e-mail request for a password reset */
 export const ForgotPasswordForm = () => {
+  // Localization
   const { LL } = useI18nContext();
 
+  // Form logic
   const form = useForgotPasswordForm();
 
   /** When successfull, the form changes to a confirmation message */
@@ -38,10 +39,7 @@ export const ForgotPasswordForm = () => {
             />
           )}
         />
-        <ReCAPTCHA
-          sitekey={publicEnvironment.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY}
-          onChange={form.setCaptcha}
-        />
+        <Captcha onChange={form.setCaptcha} />
         <Button
           variant="contained"
           type="submit"
