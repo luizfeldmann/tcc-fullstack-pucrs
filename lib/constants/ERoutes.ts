@@ -6,7 +6,7 @@ export enum ERoutes {
   Signup = "/signup",
   Verify = "/verify",
   ChangePassword = "/change-password",
-  ResetPassword = "/reset-password",
+  ForgotPassword = "/forgot-password",
   Dashboard = "/dashboard",
   Account = "/dashboard/account",
   Transactions = "/dashboard/transactions",

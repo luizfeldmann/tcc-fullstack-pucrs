@@ -52,7 +52,8 @@ export async function POST(req: NextRequest) {
 
     // Send the verification email
     const verifyLink = new URL(req.url);
-    verifyLink.pathname = `${ERoutes.Verify}/${jwtVerify}`;
+    verifyLink.pathname = ERoutes.Verify;
+    verifyLink.searchParams.set("t", jwtVerify);
 
     await emailTransporter.sendMail({
       from: serverEnvironment.EMAIL_USER,

@@ -435,7 +435,7 @@ type RootTranslation = {
 		 */
 		Confirmation: string
 	}
-	ResetPassword: {
+	ForgotPassword: {
 		/**
 		 * R​e​c​o​v​e​r​ ​y​o​u​r​ ​P​a​s​s​w​o​r​d
 		 */
@@ -474,10 +474,16 @@ type RootTranslation = {
 		 * C​h​a​n​g​e​ ​y​o​u​r​ ​P​a​s​s​w​o​r​d
 		 */
 		Title: string
-		/**
-		 * P​a​s​s​w​o​r​d​ ​c​h​a​n​g​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y
-		 */
-		SuccessMessage: string
+		Status: {
+			/**
+			 * P​a​s​s​w​o​r​d​ ​c​h​a​n​g​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y
+			 */
+			Success: string
+			/**
+			 * T​h​e​ ​l​i​n​k​ ​u​s​e​d​ ​i​s​ ​i​n​v​a​l​i​d​ ​o​r​ ​e​x​p​i​r​e​d
+			 */
+			Invalid: string
+		}
 		/**
 		 * L​o​g​-​i​n
 		 */
@@ -922,7 +928,7 @@ export type TranslationFunctions = {
 		 */
 		Confirmation: () => LocalizedString
 	}
-	ResetPassword: {
+	ForgotPassword: {
 		/**
 		 * Recover your Password
 		 */
@@ -961,10 +967,16 @@ export type TranslationFunctions = {
 		 * Change your Password
 		 */
 		Title: () => LocalizedString
-		/**
-		 * Password changed successfully
-		 */
-		SuccessMessage: () => LocalizedString
+		Status: {
+			/**
+			 * Password changed successfully
+			 */
+			Success: () => LocalizedString
+			/**
+			 * The link used is invalid or expired
+			 */
+			Invalid: () => LocalizedString
+		}
 		/**
 		 * Log-in
 		 */

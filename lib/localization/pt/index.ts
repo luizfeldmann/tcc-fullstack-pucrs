@@ -156,7 +156,7 @@ const pt = {
     Required: "Obrigatório",
     Confirmation: "A confirmação deve ser igual a senha",
   },
-  ResetPassword: {
+  ForgotPassword: {
     Title: "Recuperar sua Conta",
     Form: {
       Email: "E-mail",
@@ -171,7 +171,10 @@ const pt = {
   },
   ChangePassword: {
     Title: "Altere sua Senha",
-    SuccessMessage: "Senha alterada com sucesso",
+    Status: {
+      Success: "Senha alterada com sucesso",
+      Invalid: "O link utilizado é inválido ou expirou",
+    },
     ContinueLoginButton: "Entrar",
     Form: {
       Password: "Nova senha",

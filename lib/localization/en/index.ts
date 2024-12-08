@@ -154,7 +154,7 @@ const en = {
     Required: "Required",
     Confirmation: "The password confirmation must match the password",
   },
-  ResetPassword: {
+  ForgotPassword: {
     Title: "Recover your Password",
     Form: {
       Email: "E-mail",
@@ -169,7 +169,10 @@ const en = {
   },
   ChangePassword: {
     Title: "Change your Password",
-    SuccessMessage: "Password changed successfully",
+    Status: {
+      Success: "Password changed successfully",
+      Invalid: "The link used is invalid or expired",
+    },
     ContinueLoginButton: "Log-in",
     Form: {
       Password: "New password",

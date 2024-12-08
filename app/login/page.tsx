@@ -16,7 +16,7 @@ const Login = () => {
       <h1>{LL.Login.Title()}</h1>
       <LoginForm />
       <center>
-        <Link href={ERoutes.ResetPassword}>
+        <Link href={ERoutes.ForgotPassword}>
           {LL.Login.LinkForgotPassword()}
         </Link>
       </center>

@@ -15,7 +15,7 @@ import StatusCode from "status-code-enum";
 import { z } from "zod";
 
 /** Error result of the login request */
-export enum ELoginStatus {
+enum ELoginStatus {
   /** Login success */
   OK = "ok",
 
