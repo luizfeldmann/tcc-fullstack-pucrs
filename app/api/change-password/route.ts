@@ -11,6 +11,7 @@ import {
 import { UserModel } from "@/lib/models/UserModel";
 import { ConnectDatabase } from "@/lib/singleton/Database";
 
+/** Handles a request to set a new password - after the user clicks the link in the email */
 export async function POST(req: NextRequest) {
   // Validate DTO
   const requestBody = await req.json();

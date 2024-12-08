@@ -11,6 +11,7 @@ import { EUserTokenPurpose, UserToken } from "@/lib/schemas/dto/UserToken";
 import { serverEnvironment } from "@/lib/constants/ServerEnvironment";
 import { ConnectDatabase } from "@/lib/singleton/Database";
 
+/** Endpoint handling authenticating a user */
 export async function POST(req: NextRequest) {
   // Validate DTO
   const requestPayload = await req.json();

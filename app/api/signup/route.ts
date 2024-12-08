@@ -12,6 +12,7 @@ import { mongo } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import { URL } from "node:url";
 
+/** Handler for signing-up a new user */
 export async function POST(req: NextRequest) {
   // Validate DTO
   const payload = await req.json();

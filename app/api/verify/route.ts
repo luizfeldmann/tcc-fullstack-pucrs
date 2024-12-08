@@ -10,6 +10,7 @@ import {
 import { ConnectDatabase } from "@/lib/singleton/Database";
 import { UserModel } from "@/lib/models/UserModel";
 
+/** Endpoint handling verifying newly created user accounts */
 export async function POST(req: NextRequest): Promise<NextResponse> {
   // Validate DTO
   const requestBody = await req.json();

@@ -37,6 +37,10 @@ const en = {
       BadPass: "The password is incorrect",
     },
   },
+  Logout: {
+    Title: "Logoff",
+    Progress: "You are being logged-off the account",
+  },
   Signup: {
     Title: "Signup",
     Form: {

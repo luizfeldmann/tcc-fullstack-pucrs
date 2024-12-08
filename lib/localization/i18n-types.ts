@@ -116,6 +116,16 @@ type RootTranslation = {
 			BadPass: string
 		}
 	}
+	Logout: {
+		/**
+		 * L​o​g​o​f​f
+		 */
+		Title: string
+		/**
+		 * Y​o​u​ ​a​r​e​ ​b​e​i​n​g​ ​l​o​g​g​e​d​-​o​f​f​ ​t​h​e​ ​a​c​c​o​u​n​t
+		 */
+		Progress: string
+	}
 	Signup: {
 		/**
 		 * S​i​g​n​u​p
@@ -613,6 +623,16 @@ export type TranslationFunctions = {
 			 */
 			BadPass: () => LocalizedString
 		}
+	}
+	Logout: {
+		/**
+		 * Logoff
+		 */
+		Title: () => LocalizedString
+		/**
+		 * You are being logged-off the account
+		 */
+		Progress: () => LocalizedString
 	}
 	Signup: {
 		/**

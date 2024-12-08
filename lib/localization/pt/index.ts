@@ -37,6 +37,10 @@ const pt = {
       BadPass: "Senha incorreta",
     },
   },
+  Logout: {
+    Title: "Sair",
+    Progress: "Você está saindo da sua conta",
+  },
   Signup: {
     Title: "Cadastro",
     Form: {

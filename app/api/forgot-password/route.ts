@@ -9,6 +9,7 @@ import { emailTransporter } from "@/lib/singleton/app-mailer";
 import { ERoutes } from "@/lib/constants/ERoutes";
 import { ConnectDatabase } from "@/lib/singleton/Database";
 
+/** Handles a password recovery request - sends an e-mail with reset instructions */
 export async function POST(req: NextRequest) {
   // Validate DTO
   const requestBody = await req.json();
