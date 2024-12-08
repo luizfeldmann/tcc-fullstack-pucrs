@@ -1,24 +1,23 @@
-import { serverEnvironment } from "@/lib/constants/ServerEnvironment";
-import { changePasswordRequestSchema } from "@/lib/schemas/dto/ChangePasswordRequest";
+import { verifyAccountRequestSchema } from "@/lib/schemas/dto/VerifyAccountRequest";
 import { NextRequest, NextResponse } from "next/server";
 import StatusCode from "status-code-enum";
-import jsonwebtoken from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import jsonwebtoken, { JsonWebTokenError } from "jsonwebtoken";
+import { serverEnvironment } from "@/lib/constants/ServerEnvironment";
 import {
   EUserTokenPurpose,
   UserTokenSchema,
 } from "@/lib/schemas/dto/UserToken";
-import { UserModel } from "@/lib/models/UserModel";
 import { ConnectDatabase } from "@/lib/singleton/Database";
+import { UserModel } from "@/lib/models/UserModel";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<NextResponse> {
   // Validate DTO
   const requestBody = await req.json();
   const {
     data: requestData,
     error: requestError,
     success: requestSuccess,
-  } = await changePasswordRequestSchema.safeParseAsync(requestBody);
+  } = await verifyAccountRequestSchema.safeParseAsync(requestBody);
 
   if (!requestSuccess)
     return NextResponse.json(requestError, {
@@ -45,7 +44,7 @@ export async function POST(req: NextRequest) {
       });
 
     // To token must be issued for this purpose
-    if (jwtData.purpose !== EUserTokenPurpose.EResetPassword)
+    if (jwtData.purpose !== EUserTokenPurpose.EVerifyAccount)
       return new NextResponse(null, {
         status: StatusCode.ClientErrorUnauthorized,
       });
@@ -61,19 +60,23 @@ export async function POST(req: NextRequest) {
         status: StatusCode.ClientErrorNotFound,
       });
 
-    // Store the new password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(requestData.password, salt);
-
-    foundUser.passwordHashed = hashedPassword;
+    // Update the 'verified' state in the DB
     foundUser.verified = true;
     await foundUser.save();
 
     // Reply success
-    return new NextResponse(null, { status: StatusCode.SuccessOK });
-  } catch (err) {
-    return NextResponse.json(err, {
-      status: StatusCode.ClientErrorUnauthorized,
+    return new NextResponse(null, {
+      status: StatusCode.SuccessOK,
     });
+  } catch (err) {
+    if (err instanceof JsonWebTokenError) {
+      return new NextResponse(null, {
+        status: StatusCode.ClientErrorUnauthorized,
+      });
+    } else {
+      return new NextResponse(null, {
+        status: StatusCode.ServerErrorInternal,
+      });
+    }
   }
 }

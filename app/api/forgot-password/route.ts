@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     expiresIn: "1h",
   });
 
-  // Send the verification email
+  // Send the email with the link to change the password
   const changeLink = new URL(req.url);
   changeLink.pathname = ERoutes.ChangePassword;
   changeLink.searchParams.set("t", jwtReset);
