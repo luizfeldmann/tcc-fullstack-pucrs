@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 /** Key of the storage item used for auth */
 const autoLocalStorageName = "user-auth";
@@ -28,13 +22,15 @@ export const useAuthContext = () => {
 
 export const AuthProvider = (props: { children: React.ReactNode }) => {
   // Initialize the state by reading from browser local storage
-  const [token, setToken] = useState<string | undefined>();
+  const [token, setToken] = useState<string | undefined>(() => {
+    // Guard against server-side not having localStorage defined
+    if (typeof window === "undefined") return undefined;
 
-  useEffect(() => {
-    const readStorage = localStorage.getItem(autoLocalStorageName);
-    if (readStorage) setToken(readStorage);
-  }, [setToken]);
+    // Perform the read in client-side only
+    return localStorage.getItem(autoLocalStorageName) ?? undefined;
+  });
 
+  // Callback to save new authentication
   const doLogin = useCallback(
     (token: string) => {
       localStorage.setItem(autoLocalStorageName, token);
