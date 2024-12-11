@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 
 /** Redeemable code data format */
 export interface IRedeemable {
@@ -15,13 +15,14 @@ export interface IRedeemable {
   expiration: Date;
 }
 
+const redeemablesSchema = new mongoose.Schema<IRedeemable>({
+  code: { type: String, required: true, unique: true },
+  credit: { type: Number, required: true },
+  maximumUses: { type: Number, required: true, default: Infinity },
+  expiration: { type: Date, required: true },
+});
+
 /** ORM of the redeemable codes in DB */
-export const RedeemableModel = mongoose.model<IRedeemable>(
-  "Redeemables",
-  new mongoose.Schema<IRedeemable>({
-    code: { type: String, required: true, unique: true },
-    credit: { type: Number, required: true },
-    maximumUses: { type: Number, required: true, default: Infinity },
-    expiration: { type: Date, required: true },
-  })
-);
+export const RedeemableModel: Model<IRedeemable> =
+  mongoose.models?.Redeemables ||
+  mongoose.model<IRedeemable>("Redeemables", redeemablesSchema);
