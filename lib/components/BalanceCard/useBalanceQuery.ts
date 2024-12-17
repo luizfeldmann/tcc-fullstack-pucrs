@@ -3,7 +3,8 @@ import {
   IBalanceResponseData,
 } from "@/lib/schemas/dto/BalanceResponse";
 import { appAxios, withAuthorizationHeader } from "@/lib/singleton/app-axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCallback } from "react";
 
 /** Query key for the balance */
 export const balanceQueryKey: string = "/transactions/balance";
@@ -24,4 +25,14 @@ export const useBalanceQuery = (token?: string) => {
       return await balanceResponseSchema.parseAsync(resp.data);
     },
   });
+};
+
+/** Gets a callback that can be used to invalidate the balance query */
+export const useInvalidateBalanceQuery = (token?: string) => {
+  const client = useQueryClient();
+  return useCallback(() => {
+    client.invalidateQueries({
+      queryKey: [balanceQueryKey, token],
+    });
+  }, [client, token]);
 };
