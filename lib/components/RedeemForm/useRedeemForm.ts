@@ -101,6 +101,9 @@ export const useRedeem = (): IRedeemFormProps => {
   } = useForm<redeemFormData>({
     mode: "all",
     resolver: zodResolver(redeemFormSchema),
+    defaultValues: {
+      redeemCode: "",
+    },
   });
 
   /** Loading indication while request is pending */
