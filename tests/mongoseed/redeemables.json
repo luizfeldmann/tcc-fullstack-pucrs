@@ -1,0 +1,20 @@
+[
+  {
+    "_id": {
+      "$oid": "673bf8f1487359e10759d5de"
+    },
+    "code": "FULLSTACK10",
+    "credit": 10,
+    "maximumUses": 100,
+    "expiration": "2030-01-01"
+  },
+  {
+    "_id": {
+      "$oid": "6743670979ca494184962c17"
+    },
+    "code": "FULLSTACK20",
+    "credit": 20,
+    "maximumUses": 100,
+    "expiration": "2030-01-01"
+  }
+]

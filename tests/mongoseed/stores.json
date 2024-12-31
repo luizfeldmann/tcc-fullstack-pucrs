@@ -1,0 +1,36 @@
+[
+  {
+    "_id": {
+      "$oid": "674bc35bff6c129b8a85af65"
+    },
+    "address": "Av. Brasil 42",
+    "description": "Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa.",
+    "imageSrc": "",
+    "name": "Lorem Ipsum Store",
+    "ratings": [],
+    "workingHours": [
+      {
+        "closes": 17,
+        "opens": 8,
+        "weekday": 2
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "67746a748df1e677a69f71fd"
+    },
+    "address": "Av. Beira Mar 69",
+    "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+    "imageSrc": "",
+    "name": "Dolor sit Amet Shop",
+    "ratings": [],
+    "workingHours": [
+      {
+        "closes": 17,
+        "opens": 8,
+        "weekday": 2
+      }
+    ]
+  }
+]

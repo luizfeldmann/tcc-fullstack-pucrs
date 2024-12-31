@@ -34,3 +34,9 @@ To run the container:
 ```
 docker run -p 3000:3000 tcc-fullstack
 ```
+
+Using the *compose* :
+
+```
+docker-compose up --build
+```
