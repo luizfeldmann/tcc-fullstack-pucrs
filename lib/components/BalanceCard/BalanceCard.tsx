@@ -1,3 +1,5 @@
+"use client";
+
 import { ERoutes } from "@/lib/constants/ERoutes";
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { Add } from "@mui/icons-material";

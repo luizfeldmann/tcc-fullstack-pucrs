@@ -1,17 +1,20 @@
 "use client";
 
 import { AppDrawer } from "@/lib/components/AppDrawer/AppDrawer";
-import { AppTitle } from "@/lib/components/localization/AppTitle";
 import { loginRedirectQuery } from "@/lib/components/LoginForm/LoginRedirect";
 import { useAuthContext } from "@/lib/components/Providers/AuthProvider";
 import { UserProfileMenu } from "@/lib/components/UserProfileMenu/UserProfileMenu";
 import { ERoutes } from "@/lib/constants/ERoutes";
+import { useI18nContext } from "@/lib/localization/i18n-react";
 import { Menu } from "@mui/icons-material";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function DashboardLayout(props: { children: React.ReactNode }) {
+  // Localization
+  const { LL } = useI18nContext();
+
   // Manage the open/close state of the drawer menu
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -47,7 +50,9 @@ export default function DashboardLayout(props: { children: React.ReactNode }) {
           >
             <Menu />
           </IconButton>
-          <AppTitle variant="h6" component="div" sx={{ flexGrow: 1 }} />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {LL.Layout.AppTitle()}
+          </Typography>
           <UserProfileMenu />
         </Toolbar>
       </AppBar>

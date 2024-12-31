@@ -1,3 +1,5 @@
+"use client";
+
 import { useSearchParams } from "next/navigation";
 import {
   EVerifyAccountStateIndicator,
@@ -7,8 +9,8 @@ import { TranslationFunctions } from "@/lib/localization/i18n-types";
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { useMemo } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Block, SearchOff } from "@mui/icons-material";
-import { Alert, AlertColor } from "@mui/material";
+import { Block, Login, SearchOff } from "@mui/icons-material";
+import { Alert, AlertColor, Button } from "@mui/material";
 
 /** Describes the UI information presented for one verificatio state */
 interface IVerifyAccountIndication {
@@ -70,8 +72,15 @@ export const VerifyAccountIndicator = () => {
   const indication: IVerifyAccountIndication = verifyAccountIndications[status];
 
   return (
-    <Alert severity={indication.severity} icon={indication.icon}>
-      {indication.text}
-    </Alert>
+    <>
+      <Alert severity={indication.severity} icon={indication.icon}>
+        {indication.text}
+      </Alert>
+      {status == EVerifyAccountStateIndicator.Success && (
+        <Button variant="contained" type="submit" startIcon={<Login />}>
+          {LL.Verify.ButtonContinueLogin()}
+        </Button>
+      )}
+    </>
   );
 };

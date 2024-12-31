@@ -1,12 +1,10 @@
-"use client";
-
 import { ArrowDownward, CreditCard } from "@mui/icons-material";
 import { Accordion, AccordionSummary, Box, Typography } from "@mui/material";
 import { ChipComingSoon } from "./ChipComingSoon";
-import { useI18nContext } from "@/lib/localization/i18n-react";
+import { useServerLocalization } from "@/lib/hooks/useServerLocalization";
 
 export const CreditCardMethod = () => {
-  const { LL } = useI18nContext();
+  const { LL } = useServerLocalization();
 
   return (
     <Accordion disabled>

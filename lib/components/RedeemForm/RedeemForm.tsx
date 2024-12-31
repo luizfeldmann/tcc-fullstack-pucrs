@@ -1,3 +1,5 @@
+"use client";
+
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { Alert, Stack, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";

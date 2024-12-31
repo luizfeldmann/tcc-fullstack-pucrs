@@ -1,16 +1,16 @@
-"use client";
-
 import Stack from "@mui/material/Stack";
 import Button, { ButtonProps } from "@mui/material/Button";
-import { useI18nContext } from "../lib/localization/i18n-react";
 import { ERoutes } from "../lib/constants/ERoutes";
 import { Login, PersonAdd } from "@mui/icons-material";
-import { useAuthContext } from "@/lib/components/Providers/AuthProvider";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { FormPage } from "@/lib/components/FormPage/FormPage";
 import React from "react";
 import { Link } from "@mui/material";
+import {
+  getServerLocalization,
+  useServerLocalization,
+} from "@/lib/hooks/useServerLocalization";
+import { LoginRedirector } from "@/lib/components/Effects/LoginRedirector";
+import { Metadata } from "next";
 
 const MyButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, sx, ...props }, ref) => {
@@ -32,27 +32,27 @@ const MyButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 MyButton.displayName = "MyButton";
 
+/** Reads the metadata of the page */
+export async function generateMetadata(): Promise<Metadata> {
+  const { LL } = await getServerLocalization();
+
+  return {
+    title: LL.Home.Title(),
+  };
+}
+
 /**
  * The landing page (index) of the site
  */
 export default function Home() {
   // Localization
-  const { LL } = useI18nContext();
-
-  // If already logged-in, redirect to dashboard
-  const authContext = useAuthContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (authContext?.token) {
-      router.push(ERoutes.Dashboard);
-    }
-  }, [router, authContext?.token]);
+  const { LL } = useServerLocalization();
 
   // Show welcome & point to signup or login
   return (
     <FormPage>
       <h1>{LL.Home.Title()}</h1>
+      <LoginRedirector />
       <Stack
         spacing={1}
         sx={{

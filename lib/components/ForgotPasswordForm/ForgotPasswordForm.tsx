@@ -1,3 +1,5 @@
+"use client";
+
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { Send } from "@mui/icons-material";
 import {

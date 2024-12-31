@@ -1,9 +1,21 @@
-"use client";
+import {
+  getServerLocalization,
+  useServerLocalization,
+} from "@/lib/hooks/useServerLocalization";
+import { Metadata } from "next";
 
-import { useI18nContext } from "@/lib/localization/i18n-react";
+/** Reads the metadata of the page */
+export async function generateMetadata(): Promise<Metadata> {
+  const { LL } = await getServerLocalization();
 
+  return {
+    title: LL.About.Title(),
+  };
+}
+
+/** Page with the website general information */
 export default function About() {
-  const { LL } = useI18nContext();
+  const { LL } = useServerLocalization();
 
   return (
     <div>

@@ -1,24 +1,29 @@
-"use client";
-
-import { useAuthContext } from "@/lib/components/Providers/AuthProvider";
-import { ERoutes } from "@/lib/constants/ERoutes";
-import { useI18nContext } from "@/lib/localization/i18n-react";
+import { LogoutPerformer } from "@/lib/components/Effects/LogoutPerformer";
+import {
+  getServerLocalization,
+  useServerLocalization,
+} from "@/lib/hooks/useServerLocalization";
 import { Alert, LinearProgress, Stack, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Metadata } from "next";
 
+/** Reads the metadata of the page */
+export async function generateMetadata(): Promise<Metadata> {
+  const { LL } = await getServerLocalization();
+
+  return {
+    title: LL.Logout.Title(),
+  };
+}
+
+/**
+ * Progress while the user is logged-off
+ */
 export default function LogoutPage() {
-  const { LL } = useI18nContext();
-  const authContext = useAuthContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    authContext?.doLogout();
-    router.push(ERoutes.Index);
-  }, [router, authContext]);
+  const { LL } = useServerLocalization();
 
   return (
     <Stack spacing={1}>
+      <LogoutPerformer />
       <Typography variant="h2">{LL.Logout.Title()}</Typography>
       <Alert severity="info">
         <Stack spacing={1}>

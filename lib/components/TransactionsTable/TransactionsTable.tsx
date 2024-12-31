@@ -1,3 +1,5 @@
+"use client";
+
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import { useAuthContext } from "../Providers/AuthProvider";
 import { useMemo, useState } from "react";
@@ -58,7 +60,7 @@ export const TransactionsTable = () => {
   return (
     <Paper>
       <TableContainer>
-        <Table aria-label="sticky table">
+        <Table>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
