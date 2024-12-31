@@ -52,7 +52,7 @@ export const ChangePasswordForm = () => {
   // Show the actual form
   return (
     <form onSubmit={form.onSubmitHandler}>
-      <Stack>
+      <Stack spacing={1}>
         <Controller
           name="password"
           control={form.control}

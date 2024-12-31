@@ -45,7 +45,7 @@ export const SignupForm = () => {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <Stack>
+      <Stack spacing={1}>
         <Controller
           name="firstName"
           control={control}

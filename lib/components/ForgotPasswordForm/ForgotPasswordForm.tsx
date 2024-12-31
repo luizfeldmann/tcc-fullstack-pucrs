@@ -26,7 +26,7 @@ export const ForgotPasswordForm = () => {
 
   return (
     <form onSubmit={form.onSubmitHandler}>
-      <Stack>
+      <Stack spacing={1}>
         <Controller
           name="emailAddress"
           control={form.control}

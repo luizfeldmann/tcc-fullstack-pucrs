@@ -42,7 +42,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={loginForm.onSubmitHandler}>
-      <Stack spacing={{ xs: 1, sm: 2 }}>
+      <Stack spacing={1}>
         <Controller
           name="emailAddress"
           control={loginForm.control}
