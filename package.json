@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "typesafe-i18n": "typesafe-i18n",
+    "test": "playwright test",
     "lint": "next lint"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
