@@ -18,12 +18,25 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  mongoseed:
+    image: mongoseed
+    build:
+      context: tests/mongoseed
+    networks:
+      - dev-net
+    depends_on:
+      - mongo
+
   nextapp:
     container_name: nextapp
     image: nextapp
     build: .
     depends_on:
-      - mongo
+      mongo:
+        condition: service_started
+      mongoseed:
+        condition: service_completed_successfully
+
     ports:
       - "3000:3000"
     networks:

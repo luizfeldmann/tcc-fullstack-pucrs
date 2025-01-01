@@ -1,0 +1,13 @@
+[
+  {
+    "_id": {
+      "$oid": "6765e50b5f1f2a1f6c034243"
+    },
+    "firstName": "Foo",
+    "lastName": "Bar",
+    "emailAddress": "foo.bar@test.com",
+    "passwordHashed": "$2a$10$fqzwAc5Lf4u/1JDR.MLZ1O8a2pQUTfZ.nJf7yYr9.u15zl32g8aRe",
+    "verified": true,
+    "__v": 0
+  }
+]

@@ -1,5 +1,7 @@
 # PUCRS Fullstack TCC
 
+![Workflow Status](https://github.com/luizfeldmann/tcc-fullstack-pucrs/actions/workflows/main.yml/badge.svg)
+
 Final project in the course.
 
 # Development
@@ -33,4 +35,10 @@ docker build -t tcc-fullstack .
 To run the container:
 ```
 docker run -p 3000:3000 tcc-fullstack
+```
+
+Using the *compose* :
+
+```
+docker-compose up --build
 ```
