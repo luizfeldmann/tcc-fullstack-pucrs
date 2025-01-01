@@ -1,5 +1,7 @@
 # PUCRS Fullstack TCC
 
+![Workflow Status](https://github.com/luizfeldmann/tcc-fullstack-pucrs/actions/workflows/main.yml/badge.svg)
+
 Final project in the course.
 
 # Development
