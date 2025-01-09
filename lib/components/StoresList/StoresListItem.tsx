@@ -5,7 +5,6 @@ import {
   styled,
   Card,
   Alert,
-  Box,
   CardMedia,
   CardContent,
   Stack,
@@ -14,18 +13,12 @@ import {
   Divider,
   Rating,
   Skeleton,
+  CardActionArea,
 } from "@mui/material";
 import { useMemo } from "react";
 import { CalcWorkingHours } from "./CalcWorkingHours";
 import { useStoreDetailQuery } from "@/lib/hooks/useStoreDetailQuery";
-
-const DynamicCard = styled(Card)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  [theme.containerQueries.up(750)]: {
-    flexDirection: "row",
-  },
-}));
+import { StoreDetailsURL } from "@/lib/constants/ERoutes";
 
 const DynamicCardImage = styled("img")(({ theme }) => ({
   alignSelf: "stretch",
@@ -60,14 +53,31 @@ export const StoresListItem = (props: { storeId: string }) => {
 
   // Show data card
   return (
-    <Box
+    <Card
       sx={{
         overflow: "auto",
         containerType: "inline-size",
       }}
     >
-      <DynamicCard>
-        <CardMedia component={DynamicCardImage} image="" />
+      <CardActionArea
+        {...(storeInfo.isSuccess
+          ? { href: StoreDetailsURL(storeInfo.data?.id) }
+          : {})}
+        sx={(theme) => ({
+          display: "flex",
+          overflow: "auto",
+          containerType: "inline-size",
+          flexDirection: "column",
+          [theme.containerQueries.up(750)]: {
+            flexDirection: "row",
+          },
+        })}
+      >
+        <CardMedia
+          component={DynamicCardImage}
+          image={storeInfo.data?.imageSrc}
+          alt=" "
+        />
         <CardContent component={Stack} flexGrow={1}>
           <Stack direction="row" flexWrap="wrap">
             <Stack sx={{ flexGrow: 1 }}>
@@ -119,7 +129,7 @@ export const StoresListItem = (props: { storeId: string }) => {
             {storeInfo.data ? storeInfo.data.description : <Skeleton />}
           </Typography>
         </CardContent>
-      </DynamicCard>
-    </Box>
+      </CardActionArea>
+    </Card>
   );
 };

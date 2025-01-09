@@ -12,7 +12,11 @@ export enum ERoutes {
   Transactions = "/dashboard/transactions",
   Deposit = "/dashboard/deposit",
   Stores = "/dashboard/stores",
-  StoreDetails = "/dashboard/store",
+  StoreDetails = "/dashboard/stores/",
   Products = "/dashboard/products",
   ProductDetails = "/dashboard/product",
+}
+
+export function StoreDetailsURL(id: string) {
+  return ERoutes.StoreDetails + id;
 }
