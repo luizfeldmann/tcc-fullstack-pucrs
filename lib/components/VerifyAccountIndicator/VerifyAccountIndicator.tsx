@@ -11,6 +11,7 @@ import { useMemo } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Block, Login, SearchOff } from "@mui/icons-material";
 import { Alert, AlertColor, Button } from "@mui/material";
+import { ERoutes } from "@/lib/constants/ERoutes";
 
 /** Describes the UI information presented for one verificatio state */
 interface IVerifyAccountIndication {
@@ -77,7 +78,12 @@ export const VerifyAccountIndicator = () => {
         {indication.text}
       </Alert>
       {status == EVerifyAccountStateIndicator.Success && (
-        <Button variant="contained" type="submit" startIcon={<Login />}>
+        <Button
+          variant="contained"
+          type="submit"
+          startIcon={<Login />}
+          href={ERoutes.Login}
+        >
           {LL.Verify.ButtonContinueLogin()}
         </Button>
       )}
