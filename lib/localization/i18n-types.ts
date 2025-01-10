@@ -406,6 +406,26 @@ type RootTranslation = {
 		 * N​o​ ​h​o​u​r​s​ ​i​n​f​o
 		 */
 		NoInfo: string
+		/**
+		 * D​e​s​c​r​i​p​t​i​o​n
+		 */
+		DescriptionTitle: string
+		/**
+		 * P​i​c​t​u​r​e​s
+		 */
+		ImagesTitle: string
+		/**
+		 * W​o​r​k​i​n​g​ ​h​o​u​r​s
+		 */
+		WorkingHoursTitle: string
+		/**
+		 * R​e​v​i​e​w​s
+		 */
+		ReviewsTitle: string
+		/**
+		 * P​r​o​d​u​c​t​s
+		 */
+		ProductsTitle: string
 	}
 	Products: {
 		/**
@@ -911,6 +931,26 @@ export type TranslationFunctions = {
 		 * No hours info
 		 */
 		NoInfo: () => LocalizedString
+		/**
+		 * Description
+		 */
+		DescriptionTitle: () => LocalizedString
+		/**
+		 * Pictures
+		 */
+		ImagesTitle: () => LocalizedString
+		/**
+		 * Working hours
+		 */
+		WorkingHoursTitle: () => LocalizedString
+		/**
+		 * Reviews
+		 */
+		ReviewsTitle: () => LocalizedString
+		/**
+		 * Products
+		 */
+		ProductsTitle: () => LocalizedString
 	}
 	Products: {
 		/**

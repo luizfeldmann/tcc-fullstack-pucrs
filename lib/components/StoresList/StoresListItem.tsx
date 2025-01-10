@@ -9,9 +9,7 @@ import {
   CardContent,
   Stack,
   Typography,
-  Chip,
   Divider,
-  Rating,
   Skeleton,
   CardActionArea,
 } from "@mui/material";
@@ -19,6 +17,8 @@ import { useMemo } from "react";
 import { CalcWorkingHours } from "./CalcWorkingHours";
 import { useStoreDetailQuery } from "@/lib/hooks/useStoreDetailQuery";
 import { StoreDetailsURL } from "@/lib/constants/ERoutes";
+import { StoreOpenStatus } from "../StoreOpenStatus/StoreOpenStatus";
+import { StoreRatingIndicator } from "../StoreRatingIndicator/StoreRatingIndicator";
 
 const DynamicCardImage = styled("img")(({ theme }) => ({
   alignSelf: "stretch",
@@ -79,7 +79,12 @@ export const StoresListItem = (props: { storeId: string }) => {
           alt=" "
         />
         <CardContent component={Stack} flexGrow={1}>
-          <Stack direction="row" flexWrap="wrap">
+          <Stack
+            direction="row"
+            flexWrap="wrap"
+            alignItems="center"
+            spacing={2}
+          >
             <Stack sx={{ flexGrow: 1 }}>
               <Typography variant="h5">
                 {storeInfo.data ? storeInfo.data.name : <Skeleton />}
@@ -88,41 +93,12 @@ export const StoresListItem = (props: { storeId: string }) => {
                 {storeInfo.data ? storeInfo.data.address : <Skeleton />}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Stack alignItems="center">
-                <Chip
-                  color={hoursInfo.open ? "success" : "error"}
-                  variant="outlined"
-                  label={
-                    hoursInfo.open
-                      ? LL.Stores.OpenStatus()
-                      : LL.Stores.ClosedStatus()
-                  }
-                />
-                <Typography
-                  variant="subtitle1"
-                  sx={{ color: "text.secondary" }}
-                >
-                  {hoursInfo.hint}
-                </Typography>
-              </Stack>
-              <Divider orientation="vertical" flexItem />
-              <Stack alignItems="center">
-                {storeInfo.data && (
-                  <Rating
-                    name="read-only"
-                    value={storeInfo.data.rating}
-                    readOnly
-                  />
-                )}
-                <Typography
-                  variant="subtitle1"
-                  sx={{ color: "text.secondary" }}
-                >
-                  {storeInfo.data ? storeInfo.data.countRatings : <Skeleton />}
-                </Typography>
-              </Stack>
-            </Stack>
+            <StoreOpenStatus hoursInfo={hoursInfo} />
+            <Divider orientation="vertical" flexItem />
+            <StoreRatingIndicator
+              rating={storeInfo.data?.rating}
+              countRatings={storeInfo.data?.countRatings}
+            />
           </Stack>
           <Divider />
           <Typography sx={{ color: "text.primary" }}>

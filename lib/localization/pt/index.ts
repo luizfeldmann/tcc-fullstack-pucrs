@@ -147,6 +147,11 @@ const pt = {
     ClosingTime: "Fecha às {0}",
     OpeningDay: "Abre na {0}",
     NoInfo: "Sem dados de horário",
+    DescriptionTitle: "Descrição",
+    ImagesTitle: "Fotos",
+    WorkingHoursTitle: "Horários de funcionamento",
+    ReviewsTitle: "Avaliações",
+    ProductsTitle: "Produtos",
   },
   Products: {
     Title: "Produtos",

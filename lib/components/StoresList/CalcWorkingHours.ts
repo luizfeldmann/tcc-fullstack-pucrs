@@ -12,6 +12,10 @@ const formatHour = (locale: Locales, hour: number) => {
   });
 };
 
+/** How to format the weekdays */
+const makeWeekdayFmt = (locale: Locales) =>
+  new Intl.DateTimeFormat(locale, { weekday: "long" });
+
 /** Calculated opening hours info */
 export interface IWorkingHoursInfo {
   open: boolean;
@@ -22,7 +26,7 @@ export interface IWorkingHoursInfo {
 export const CalcWorkingHours = (
   locale: Locales,
   LL: TranslationFunctions,
-  workingHours: IStoreHours[] | undefined
+  workingHours?: IStoreHours[]
 ): IWorkingHoursInfo => {
   // Trivial case - no information
   if (!workingHours || workingHours.length == 0) {
@@ -74,10 +78,46 @@ export const CalcWorkingHours = (
 
   while (now.getDay() != openAnotherDay.weekday) now.setDate(1 + now.getDate());
 
+  const weekdayFmt = makeWeekdayFmt(locale);
   return {
     open: false,
-    hint: LL.Stores.OpeningDay(
-      new Intl.DateTimeFormat(locale, { weekday: "long" }).format(now)
-    ),
+    hint: LL.Stores.OpeningDay(weekdayFmt.format(now)),
   };
+};
+
+export interface IWorkingHoursSummary {
+  id: number;
+  weekday: string;
+  hours: {
+    opens: string;
+    closes: string;
+  }[];
+}
+
+export const FormatWorkingHours = (
+  locale: Locales,
+  workingHours: IStoreHours[]
+): IWorkingHoursSummary[] => {
+  const weekdayFmt = makeWeekdayFmt(locale);
+
+  // Start the list from today
+  const now = new Date();
+
+  // Iterate the 7 days of the week
+  return [...Array(7)].map((_, i) => {
+    // Increment the day of the week
+    const weekdayDate = new Date(now);
+    weekdayDate.setDate(i + now.getDate());
+
+    return {
+      id: weekdayDate.getDay(),
+      weekday: weekdayFmt.format(weekdayDate),
+      hours: workingHours
+        .filter((x) => x.weekday == weekdayDate.getDay())
+        .map((x) => ({
+          opens: formatHour(locale, x.opens),
+          closes: formatHour(locale, x.closes),
+        })),
+    };
+  });
 };

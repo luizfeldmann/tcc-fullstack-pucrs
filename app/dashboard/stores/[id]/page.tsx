@@ -14,6 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
 /**
  * Page with the details of one store
  */
-export default function StoreDetailsPage() {
-  return <StoreDetails />;
+export default async function StoreDetailsPage(props: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await props.params;
+  return <StoreDetails id={id} />;
 }

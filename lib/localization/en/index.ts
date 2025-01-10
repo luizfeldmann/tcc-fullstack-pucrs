@@ -145,6 +145,11 @@ const en = {
     ClosingTime: "Closes at {0:string}",
     OpeningDay: "Opens on {0:string}",
     NoInfo: "No hours info",
+    DescriptionTitle: "Description",
+    ImagesTitle: "Pictures",
+    WorkingHoursTitle: "Working hours",
+    ReviewsTitle: "Reviews",
+    ProductsTitle: "Products",
   },
   Products: {
     Title: "Products",
