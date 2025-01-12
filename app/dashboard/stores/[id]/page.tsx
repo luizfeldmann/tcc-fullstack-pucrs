@@ -1,13 +1,20 @@
 import { StoreDetails } from "@/lib/components/StoreDetails/StoreDetails";
-import { getServerLocalization } from "@/lib/hooks/useServerLocalization";
+import { GetStoreDetailsById } from "@/lib/controllers/stores";
 import { Metadata } from "next";
 
+interface IStoreDetailsPageParams {
+  id: string;
+}
+
 /** Reads the metadata of the page */
-export async function generateMetadata(): Promise<Metadata> {
-  const { LL } = await getServerLocalization();
+export async function generateMetadata(props: {
+  params: Promise<IStoreDetailsPageParams>;
+}): Promise<Metadata> {
+  const { id } = await props.params;
+  const storeInfo = await GetStoreDetailsById(id);
 
   return {
-    title: LL.Stores.Title(),
+    title: storeInfo.name,
   };
 }
 
@@ -15,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
  * Page with the details of one store
  */
 export default async function StoreDetailsPage(props: {
-  params: Promise<{ id: string }>;
+  params: Promise<IStoreDetailsPageParams>;
 }) {
   const { id } = await props.params;
   return <StoreDetails id={id} />;
