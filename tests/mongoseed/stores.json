@@ -7,7 +7,6 @@
     "description": "Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa.",
     "imageSrc": "",
     "name": "Lorem Ipsum Store",
-    "ratings": [],
     "workingHours": [
       {
         "closes": 17,
@@ -24,7 +23,6 @@
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "imageSrc": "",
     "name": "Dolor sit Amet Shop",
-    "ratings": [],
     "workingHours": [
       {
         "closes": 17,

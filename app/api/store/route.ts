@@ -1,4 +1,5 @@
 import { StoreModel } from "@/lib/models/StoreModel";
+import { StoreReviewModel } from "@/lib/models/StoreReviewModel";
 import { IStoreDetailsResponseData } from "@/lib/schemas/dto/StoreDetailsResponse";
 import { ConnectDatabase } from "@/lib/singleton/Database";
 import { NextRequest, NextResponse } from "next/server";
@@ -22,11 +23,14 @@ export async function GET(req: NextRequest) {
     return new NextResponse(null, { status: StatusCode.ClientErrorNotFound });
 
   // Calculate ratings
-  const sumRatings = store.ratings.reduce((accumulator, currentValue) => {
+  const ratings = await StoreReviewModel.find({
+    store: id,
+  });
+
+  const sumRatings = ratings.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.rating;
   }, 0);
-  const rating =
-    store.ratings.length > 0 ? sumRatings / store.ratings.length : 0;
+  const rating = ratings.length > 0 ? sumRatings / ratings.length : 0;
 
   // Return details
   const storeInfo: IStoreDetailsResponseData = {
@@ -36,7 +40,7 @@ export async function GET(req: NextRequest) {
     imageSrc: store.imageSrc,
     description: store.description,
     rating,
-    countRatings: store.ratings.length,
+    countRatings: ratings.length,
     workingHours: store.workingHours.map((hour) => ({
       weekday: hour.weekday,
       opens: hour.opens,

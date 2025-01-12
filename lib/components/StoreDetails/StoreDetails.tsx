@@ -4,17 +4,25 @@ import { useStoreDetailQuery } from "@/lib/hooks/useStoreDetailQuery";
 import { useI18nContext } from "@/lib/localization/i18n-react";
 import {
   Accordion,
+  AccordionActions,
   AccordionDetails,
   AccordionSummary,
+  Button,
   Divider,
+  ImageList,
+  ImageListItem,
   Stack,
   Typography,
 } from "@mui/material";
 import { CalcWorkingHours } from "../StoresList/CalcWorkingHours";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { StoreOpenStatus } from "../StoreOpenStatus/StoreOpenStatus";
 import { StoreRatingIndicator } from "../StoreRatingIndicator/StoreRatingIndicator";
 import { StoreWorkingHoursTable } from "../StoreWorkingHoursTable/StoreWorkingHoursTable";
+import { EditReviewDialog } from "../EditReviewDialog/EditReviewDialog";
+import { ExpandMore } from "@mui/icons-material";
+import { StoreReviewsList } from "../StoreReviewsList/StoreReviewsList";
+import Image from "next/image";
 
 export function StoreDetails(props: { id: string }) {
   // Localization
@@ -22,6 +30,9 @@ export function StoreDetails(props: { id: string }) {
 
   // Query the store details
   const storeInfo = useStoreDetailQuery(props.id);
+
+  // Dialog management
+  const [reviewEditorIsOpen, reviewEditorSetOpen] = useState(false);
 
   // Check if open now or when will open or close
   const hoursInfo = useMemo(
@@ -42,19 +53,33 @@ export function StoreDetails(props: { id: string }) {
           countRatings={storeInfo.data?.countRatings}
         />
       </Stack>
+
       <Divider />
+
       <Accordion defaultExpanded>
-        <AccordionSummary>{LL.Stores.DescriptionTitle()}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          {LL.Stores.DescriptionTitle()}
+        </AccordionSummary>
+        <AccordionDetails>{storeInfo.data?.description}</AccordionDetails>
+      </Accordion>
+
+      <Accordion defaultExpanded>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          {LL.Stores.ImagesTitle()}
+        </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="h6">{storeInfo.data?.description}</Typography>
+          <ImageList cols={1}>
+            <ImageListItem>
+              <Image src={storeInfo.data?.imageSrc || ""} alt="" />
+            </ImageListItem>
+          </ImageList>
         </AccordionDetails>
       </Accordion>
-      <Accordion defaultExpanded>
-        <AccordionSummary>{LL.Stores.ImagesTitle()}</AccordionSummary>
-        <AccordionDetails></AccordionDetails>
-      </Accordion>
+
       <Accordion>
-        <AccordionSummary>{LL.Stores.WorkingHoursTitle()}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          {LL.Stores.WorkingHoursTitle()}
+        </AccordionSummary>
         <AccordionDetails>
           <StoreWorkingHoursTable
             locale={locale}
@@ -62,12 +87,30 @@ export function StoreDetails(props: { id: string }) {
           />
         </AccordionDetails>
       </Accordion>
+
       <Accordion>
-        <AccordionSummary>{LL.Stores.ReviewsTitle()}</AccordionSummary>
-        <AccordionDetails></AccordionDetails>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          {LL.Stores.ReviewsTitle()}
+        </AccordionSummary>
+        <AccordionDetails>
+          <StoreReviewsList storeId={props.id} />
+        </AccordionDetails>
+        <AccordionActions>
+          <Button onClick={() => reviewEditorSetOpen(true)}>
+            {LL.Stores.AddReviewButton()}
+          </Button>
+        </AccordionActions>
+        <EditReviewDialog
+          storeId={props.id}
+          isOpen={reviewEditorIsOpen}
+          onClose={() => reviewEditorSetOpen(false)}
+        />
       </Accordion>
+
       <Accordion defaultExpanded>
-        <AccordionSummary>{LL.Stores.ProductsTitle()}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          {LL.Stores.ProductsTitle()}
+        </AccordionSummary>
         <AccordionDetails></AccordionDetails>
       </Accordion>
     </>

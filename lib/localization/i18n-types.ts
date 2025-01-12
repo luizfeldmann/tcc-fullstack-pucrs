@@ -426,6 +426,14 @@ type RootTranslation = {
 		 * P​r​o​d​u​c​t​s
 		 */
 		ProductsTitle: string
+		/**
+		 * S​u​b​m​i​t​ ​R​e​v​i​e​w
+		 */
+		AddReviewButton: string
+		/**
+		 * S​a​v​e​ ​R​e​v​i​e​w
+		 */
+		SaveReview: string
 	}
 	Products: {
 		/**
@@ -951,6 +959,14 @@ export type TranslationFunctions = {
 		 * Products
 		 */
 		ProductsTitle: () => LocalizedString
+		/**
+		 * Submit Review
+		 */
+		AddReviewButton: () => LocalizedString
+		/**
+		 * Save Review
+		 */
+		SaveReview: () => LocalizedString
 	}
 	Products: {
 		/**

@@ -150,6 +150,8 @@ const en = {
     WorkingHoursTitle: "Working hours",
     ReviewsTitle: "Reviews",
     ProductsTitle: "Products",
+    AddReviewButton: "Submit Review",
+    SaveReview: "Save Review",
   },
   Products: {
     Title: "Products",

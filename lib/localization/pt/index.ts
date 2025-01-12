@@ -152,6 +152,8 @@ const pt = {
     WorkingHoursTitle: "Horários de funcionamento",
     ReviewsTitle: "Avaliações",
     ProductsTitle: "Produtos",
+    AddReviewButton: "Deixar Avaliação",
+    SaveReview: "Salvar",
   },
   Products: {
     Title: "Produtos",
