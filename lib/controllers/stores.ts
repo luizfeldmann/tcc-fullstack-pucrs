@@ -6,7 +6,7 @@ import { ConnectDatabase } from "../singleton/Database";
 /** Returns a list of all stores */
 export async function GetStoresList(): Promise<string[]> {
   await ConnectDatabase();
-  const allStores = await StoreModel.find({});
+  const allStores = await StoreModel.find({}).select({ _id: 1 });
 
   return allStores.map((store) => store._id.toString());
 }

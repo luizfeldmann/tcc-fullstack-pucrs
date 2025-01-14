@@ -434,6 +434,14 @@ type RootTranslation = {
 		 * S​a​v​e​ ​R​e​v​i​e​w
 		 */
 		SaveReview: string
+		/**
+		 * N​o​ ​p​r​o​d​u​c​t​s​ ​a​r​e​ ​a​v​a​i​l​a​b​l​e
+		 */
+		NoProducts: string
+		/**
+		 * N​o​t​ ​r​e​v​i​e​w​s​ ​w​e​r​e​ ​s​u​b​m​i​t​t​e​d​ ​y​e​t
+		 */
+		NoReviews: string
 	}
 	Products: {
 		/**
@@ -967,6 +975,14 @@ export type TranslationFunctions = {
 		 * Save Review
 		 */
 		SaveReview: () => LocalizedString
+		/**
+		 * No products are available
+		 */
+		NoProducts: () => LocalizedString
+		/**
+		 * Not reviews were submitted yet
+		 */
+		NoReviews: () => LocalizedString
 	}
 	Products: {
 		/**

@@ -2,6 +2,7 @@
 import {
   Accordion,
   AccordionDetails,
+  AccordionProps,
   AccordionSummary,
   Divider,
   ImageList,
@@ -19,7 +20,31 @@ import { StoreReviewsList } from "../StoreReviewsList/StoreReviewsList";
 import { useServerLocalization } from "@/lib/hooks/useServerLocalization";
 import { GetStoreDetailsById } from "@/lib/controllers/stores";
 import { EditReviewAccordion } from "./EditReviewAccordion";
+import { StoreProductsList } from "../StoreProductsList/StoreProductsList";
+import React from "react";
 
+const FlatAccordion = React.forwardRef<HTMLDivElement, AccordionProps>(
+  (props, ref) => {
+    return (
+      <Accordion
+        ref={ref}
+        disableGutters
+        elevation={0}
+        sx={{
+          "&:before": { display: "none" },
+          ...props.sx,
+        }}
+        {...props}
+      >
+        {props.children}
+      </Accordion>
+    );
+  }
+);
+
+FlatAccordion.displayName = "FlatAccordion";
+
+/** Shows the details of a given store */
 export function StoreDetails(props: { id: string }) {
   // Localization
   const { locale, LL } = useServerLocalization();
@@ -49,39 +74,55 @@ export function StoreDetails(props: { id: string }) {
 
       <Divider />
 
-      <Accordion defaultExpanded>
+      <FlatAccordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.DescriptionTitle()}
         </AccordionSummary>
         <AccordionDetails>{storeInfo.description}</AccordionDetails>
-      </Accordion>
+      </FlatAccordion>
 
-      <Accordion defaultExpanded>
+      <FlatAccordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.ImagesTitle()}
         </AccordionSummary>
         <AccordionDetails>
-          <ImageList cols={1}>
-            <ImageListItem>
+          <ImageList
+            cols={1}
+            sx={{
+              justifyItems: "center",
+              margin: "auto",
+            }}
+          >
+            <ImageListItem
+              sx={{
+                maxWidth: 512,
+              }}
+            >
               <img src={storeInfo.imageSrc || ""} alt="" />
             </ImageListItem>
           </ImageList>
         </AccordionDetails>
-      </Accordion>
+      </FlatAccordion>
 
-      <Accordion>
+      <FlatAccordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.WorkingHoursTitle()}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <StoreWorkingHoursTable
             locale={locale}
             workingHours={storeInfo.workingHours ?? []}
           />
         </AccordionDetails>
-      </Accordion>
+      </FlatAccordion>
 
-      <Accordion>
+      <FlatAccordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.ReviewsTitle()}
         </AccordionSummary>
@@ -89,14 +130,16 @@ export function StoreDetails(props: { id: string }) {
           <StoreReviewsList storeId={props.id} />
         </AccordionDetails>
         <EditReviewAccordion storeId={props.id} />
-      </Accordion>
+      </FlatAccordion>
 
-      <Accordion defaultExpanded>
+      <FlatAccordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.ProductsTitle()}
         </AccordionSummary>
-        <AccordionDetails></AccordionDetails>
-      </Accordion>
+        <AccordionDetails>
+          <StoreProductsList storeId={props.id} />
+        </AccordionDetails>
+      </FlatAccordion>
     </>
   );
 }

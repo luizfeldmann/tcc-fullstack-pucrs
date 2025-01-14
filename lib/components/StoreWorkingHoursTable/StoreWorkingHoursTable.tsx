@@ -21,7 +21,13 @@ export function StoreWorkingHoursTable(props: {
   );
 
   return (
-    <Table size="small">
+    <Table
+      size="small"
+      sx={{
+        width: "auto",
+        borderCollapse: "collapse",
+      }}
+    >
       <TableBody>
         {hoursSummary.map((info) => (
           <TableRow key={info.id}>

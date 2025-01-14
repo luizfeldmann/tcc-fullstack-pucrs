@@ -154,6 +154,8 @@ const pt = {
     ProductsTitle: "Produtos",
     AddReviewButton: "Deixar Avaliação",
     SaveReview: "Salvar",
+    NoProducts: "Sem produtos disponíveis",
+    NoReviews: "Ainda não há avaliações",
   },
   Products: {
     Title: "Produtos",

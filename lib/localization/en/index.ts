@@ -152,6 +152,8 @@ const en = {
     ProductsTitle: "Products",
     AddReviewButton: "Submit Review",
     SaveReview: "Save Review",
+    NoProducts: "No products are available",
+    NoReviews: "Not reviews were submitted yet",
   },
   Products: {
     Title: "Products",
