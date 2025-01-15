@@ -448,6 +448,22 @@ type RootTranslation = {
 		 * P​r​o​d​u​c​t​s
 		 */
 		Title: string
+		/**
+		 * S​o​l​d​ ​b​y​:​ 
+		 */
+		SoldBy: string
+		/**
+		 * B​u​y
+		 */
+		BuyBtn: string
+		/**
+		 * D​e​s​c​r​i​p​t​i​o​n
+		 */
+		DescriptionTitle: string
+		/**
+		 * P​i​c​t​u​r​e​s
+		 */
+		ImagesTitle: string
 	}
 	PasswordRequirements: {
 		/**
@@ -989,6 +1005,22 @@ export type TranslationFunctions = {
 		 * Products
 		 */
 		Title: () => LocalizedString
+		/**
+		 * Sold by: 
+		 */
+		SoldBy: () => LocalizedString
+		/**
+		 * Buy
+		 */
+		BuyBtn: () => LocalizedString
+		/**
+		 * Description
+		 */
+		DescriptionTitle: () => LocalizedString
+		/**
+		 * Pictures
+		 */
+		ImagesTitle: () => LocalizedString
 	}
 	PasswordRequirements: {
 		/**

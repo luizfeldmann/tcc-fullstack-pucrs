@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import {
-  Accordion,
   AccordionDetails,
-  AccordionProps,
   AccordionSummary,
   Divider,
   ImageList,
@@ -22,27 +20,7 @@ import { GetStoreDetailsById } from "@/lib/controllers/stores";
 import { EditReviewAccordion } from "./EditReviewAccordion";
 import { StoreProductsList } from "../StoreProductsList/StoreProductsList";
 import React from "react";
-
-const FlatAccordion = React.forwardRef<HTMLDivElement, AccordionProps>(
-  (props, ref) => {
-    return (
-      <Accordion
-        ref={ref}
-        disableGutters
-        elevation={0}
-        sx={{
-          "&:before": { display: "none" },
-          ...props.sx,
-        }}
-        {...props}
-      >
-        {props.children}
-      </Accordion>
-    );
-  }
-);
-
-FlatAccordion.displayName = "FlatAccordion";
+import { FlatAccordion } from "../FlatAccordion/FlatAccordion";
 
 /** Shows the details of a given store */
 export function StoreDetails(props: { id: string }) {
@@ -72,7 +50,11 @@ export function StoreDetails(props: { id: string }) {
         />
       </Stack>
 
-      <Divider />
+      <Divider
+        sx={{
+          py: 1,
+        }}
+      />
 
       <FlatAccordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMore />}>
@@ -132,7 +114,7 @@ export function StoreDetails(props: { id: string }) {
         <EditReviewAccordion storeId={props.id} />
       </FlatAccordion>
 
-      <FlatAccordion>
+      <FlatAccordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMore />}>
           {LL.Stores.ProductsTitle()}
         </AccordionSummary>

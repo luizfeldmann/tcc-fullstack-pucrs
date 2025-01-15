@@ -2,7 +2,7 @@ import type { BaseTranslation } from "../i18n-types";
 
 const en = {
   Layout: {
-    AppTitle: "Name of App",
+    AppTitle: "",
     ProfileMenu: {
       LinkAccount: "Account",
       LinkLogoff: "Logoff",
@@ -157,6 +157,10 @@ const en = {
   },
   Products: {
     Title: "Products",
+    SoldBy: "Sold by: ",
+    BuyBtn: "Buy",
+    DescriptionTitle: "Description",
+    ImagesTitle: "Pictures",
   },
   PasswordRequirements: {
     MinLen: "Length must be at least {0:number} characters",

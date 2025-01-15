@@ -2,7 +2,7 @@ import type { Translation } from "../i18n-types";
 
 const pt = {
   Layout: {
-    AppTitle: "Nome do App",
+    AppTitle: "",
     ProfileMenu: {
       LinkAccount: "Minha conta",
       LinkLogoff: "Sair",
@@ -159,6 +159,10 @@ const pt = {
   },
   Products: {
     Title: "Produtos",
+    SoldBy: "Vendido por: ",
+    BuyBtn: "Comprar",
+    DescriptionTitle: "Descrição",
+    ImagesTitle: "Fotos",
   },
   PasswordRequirements: {
     MinLen: "Requer o tamanho mínimo de {0} caracteres",

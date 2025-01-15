@@ -14,9 +14,13 @@ export enum ERoutes {
   Stores = "/dashboard/stores",
   StoreDetails = "/dashboard/stores/",
   Products = "/dashboard/products",
-  ProductDetails = "/dashboard/product",
+  ProductDetails = "/dashboard/products/",
 }
 
 export function StoreDetailsURL(id: string) {
   return ERoutes.StoreDetails + id;
+}
+
+export function ProductDetailsURL(id: string) {
+  return ERoutes.ProductDetails + id;
 }
