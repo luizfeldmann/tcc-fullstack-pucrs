@@ -1,5 +1,7 @@
 import { ProductDetailsURL } from "@/lib/constants/ERoutes";
 import { GetProductById } from "@/lib/controllers/products";
+import { useServerLocalization } from "@/lib/hooks/useServerLocalization";
+import { getCurrencyFormat } from "@/lib/localization/utils/currency";
 import {
   Box,
   Card,
@@ -12,6 +14,8 @@ import {
 import { use } from "react";
 
 export function ProductCard(props: { productId: string }) {
+  const { locale } = useServerLocalization();
+
   const productDetails = use(GetProductById(props.productId));
 
   return (
@@ -49,7 +53,7 @@ export function ProductCard(props: { productId: string }) {
                 {productDetails.name}
               </Typography>
               <Typography variant="h6" color="primary">
-                ${productDetails.price}
+                {getCurrencyFormat(locale).format(productDetails.price)}
               </Typography>
             </Box>
             <CardContent

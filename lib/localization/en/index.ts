@@ -161,6 +161,14 @@ const en = {
     BuyBtn: "Buy",
     DescriptionTitle: "Description",
     ImagesTitle: "Pictures",
+    BuyDialog: {
+      Title: "Buy item",
+      Submit: "Confirm",
+      Cancel: "Cancel",
+      Details: "Purchase {0:string} for {1:string}",
+      InsufficientBalance: "Not enough funds for this order",
+      Success: "Order was successful",
+    },
   },
   PasswordRequirements: {
     MinLen: "Length must be at least {0:number} characters",

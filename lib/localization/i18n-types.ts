@@ -15,9 +15,6 @@ export type Translations = RootTranslation
 
 type RootTranslation = {
 	Layout: {
-		/**
-		 * N​a​m​e​ ​o​f​ ​A​p​p
-		 */
 		AppTitle: string
 		ProfileMenu: {
 			/**
@@ -464,6 +461,34 @@ type RootTranslation = {
 		 * P​i​c​t​u​r​e​s
 		 */
 		ImagesTitle: string
+		BuyDialog: {
+			/**
+			 * B​u​y​ ​i​t​e​m
+			 */
+			Title: string
+			/**
+			 * C​o​n​f​i​r​m
+			 */
+			Submit: string
+			/**
+			 * C​a​n​c​e​l
+			 */
+			Cancel: string
+			/**
+			 * P​u​r​c​h​a​s​e​ ​{​0​}​ ​f​o​r​ ​{​1​}
+			 * @param {string} 0
+			 * @param {string} 1
+			 */
+			Details: RequiredParams<'0' | '1'>
+			/**
+			 * N​o​t​ ​e​n​o​u​g​h​ ​f​u​n​d​s​ ​f​o​r​ ​t​h​i​s​ ​o​r​d​e​r
+			 */
+			InsufficientBalance: string
+			/**
+			 * O​r​d​e​r​ ​w​a​s​ ​s​u​c​c​e​s​s​f​u​l
+			 */
+			Success: string
+		}
 	}
 	PasswordRequirements: {
 		/**
@@ -575,9 +600,6 @@ type RootTranslation = {
 
 export type TranslationFunctions = {
 	Layout: {
-		/**
-		 * Name of App
-		 */
 		AppTitle: () => LocalizedString
 		ProfileMenu: {
 			/**
@@ -1021,6 +1043,32 @@ export type TranslationFunctions = {
 		 * Pictures
 		 */
 		ImagesTitle: () => LocalizedString
+		BuyDialog: {
+			/**
+			 * Buy item
+			 */
+			Title: () => LocalizedString
+			/**
+			 * Confirm
+			 */
+			Submit: () => LocalizedString
+			/**
+			 * Cancel
+			 */
+			Cancel: () => LocalizedString
+			/**
+			 * Purchase {0} for {1}
+			 */
+			Details: (arg0: string, arg1: string) => LocalizedString
+			/**
+			 * Not enough funds for this order
+			 */
+			InsufficientBalance: () => LocalizedString
+			/**
+			 * Order was successful
+			 */
+			Success: () => LocalizedString
+		}
 	}
 	PasswordRequirements: {
 		/**

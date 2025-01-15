@@ -14,18 +14,14 @@ import {
 import { useMemo } from "react";
 import { useBalanceQuery } from "./useBalanceQuery";
 import { useAuthContext } from "../Providers/AuthProvider";
+import { getCurrencyFormat } from "@/lib/localization/utils/currency";
 
 export const BalanceCard = (props: { enableDepositLink: boolean }) => {
   // Localization
   const { LL, locale } = useI18nContext();
 
   // Formatting for the currency
-  const currencyFmt = useMemo(() => {
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency: "BRL",
-    });
-  }, [locale]);
+  const currencyFmt = useMemo(() => getCurrencyFormat(locale), [locale]);
 
   // Read the balance data
   const authContext = useAuthContext();

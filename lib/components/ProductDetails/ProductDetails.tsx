@@ -17,11 +17,13 @@ import {
 import Link from "next/link";
 import { use } from "react";
 import { FlatAccordion } from "../FlatAccordion/FlatAccordion";
+import { getCurrencyFormat } from "@/lib/localization/utils/currency";
+import { BuyButton } from "../BuyDialog/BuyButton";
 
 /** Shows the details of a given store */
 export function ProductDetails(props: { id: string }) {
   // Localization
-  const { LL } = useServerLocalization();
+  const { locale, LL } = useServerLocalization();
 
   // Query the store details
   const prodInfo = use(GetProductById(props.id));
@@ -46,16 +48,10 @@ export function ProductDetails(props: { id: string }) {
             marginLeft: "auto",
           }}
         >
-          <Typography variant="h4">$ {prodInfo.price}</Typography>
-          <Button
-            variant="contained"
-            sx={{
-              margin: "auto",
-            }}
-            startIcon={<ShoppingCart />}
-          >
-            {LL.Products.BuyBtn()}
-          </Button>
+          <Typography variant="h4">
+            {getCurrencyFormat(locale).format(prodInfo.price)}
+          </Typography>
+          <BuyButton productInfo={prodInfo} />
         </Stack>
       </Stack>
 

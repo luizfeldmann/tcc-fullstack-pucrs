@@ -163,6 +163,14 @@ const pt = {
     BuyBtn: "Comprar",
     DescriptionTitle: "Descrição",
     ImagesTitle: "Fotos",
+    BuyDialog: {
+      Title: "Comprar item",
+      Submit: "Confirmar",
+      Cancel: "Cancelar",
+      Details: "Comprar {0} por {1}",
+      InsufficientBalance: "Saldo insuficiente para o pedido",
+      Success: "Pedido processado com sucesso",
+    },
   },
   PasswordRequirements: {
     MinLen: "Requer o tamanho mínimo de {0} caracteres",
