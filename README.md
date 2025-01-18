@@ -4,6 +4,8 @@
 
 Final project in the course.
 
+Figma: [link here](https://www.figma.com/design/bAJduV9UPCEe9Aokj37ooP/TCC-Fullstack-PURCS?m=auto&t=N0BKdy0pUd8T7iT9-1).
+
 # Development
 
 Start the development server with:

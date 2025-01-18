@@ -3,11 +3,10 @@ import { StoreDetailsURL } from "@/lib/constants/ERoutes";
 import { GetProductById } from "@/lib/controllers/products";
 import { GetStoreDetailsById } from "@/lib/controllers/stores";
 import { useServerLocalization } from "@/lib/hooks/useServerLocalization";
-import { ExpandMore, ShoppingCart } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import {
   AccordionDetails,
   AccordionSummary,
-  Button,
   Divider,
   ImageList,
   ImageListItem,
